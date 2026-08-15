@@ -1,7 +1,7 @@
 /* ============================================
    БРАТВА FC Mobile — Opera GX Esports Engine
    Multilingual i18n, Dynamic SVG Flags,
-   SVG 7-Day Performance Graph, Esports Analytics
+   TOTW Spotlight, Goal Share Gauges, SVG Charting
    ============================================ */
 
 const SVG_FLAGS = {
@@ -18,8 +18,9 @@ const I18N = {
     wins: 'Wins',
     draws: 'Draws',
     losses: 'Losses',
-    recent_tournament: 'Recent Match',
-    top_performers: 'Top Performers',
+    recent_tournament: 'Recent Match Broadcast',
+    totw_spotlight: 'Tournament MVP Spotlight',
+    top_performers: 'Top Scorers',
     flagged_players: '⚠️ Flagged for Admin Review',
     tournament_history: 'Tournament History',
     player: 'Player',
@@ -52,8 +53,9 @@ const I18N = {
     wins: 'انتصارات',
     draws: 'تعادلات',
     losses: 'هزائم',
-    recent_tournament: 'أحدث مباراة',
-    top_performers: 'أفضل اللاعبين',
+    recent_tournament: 'البث المباشر لأحدث مباراة',
+    totw_spotlight: 'نجوم المباراة الأخيرة',
+    top_performers: 'أفضل الهدافين',
     flagged_players: '⚠️ مراجعة إدارية مطلوبة',
     tournament_history: 'سجل البطولات',
     player: 'اللاعب',
@@ -86,8 +88,9 @@ const I18N = {
     wins: 'Победы',
     draws: 'Ничьи',
     losses: 'Поражения',
-    recent_tournament: 'Последний матч',
-    top_performers: 'Лучшие игроки',
+    recent_tournament: 'Трансляция последнего матча',
+    totw_spotlight: 'Герои последнего матча',
+    top_performers: 'Лучшие бомбардиры',
     flagged_players: '⚠️ Флаг проверки администратора',
     tournament_history: 'История турниров',
     player: 'Игрок',
@@ -120,8 +123,9 @@ const I18N = {
     wins: 'Victorias',
     draws: 'Empates',
     losses: 'Derrotas',
-    recent_tournament: 'Último Partido',
-    top_performers: 'Mejores Jugadores',
+    recent_tournament: 'Última Transmisión',
+    totw_spotlight: 'Jugadores Destacados',
+    top_performers: 'Máximos Goleadores',
     flagged_players: '⚠️ Marcado para Revisión',
     tournament_history: 'Historial de Torneos',
     player: 'Jugador',
@@ -203,7 +207,7 @@ function setLanguage(langCode) {
   state.lang = langCode;
   const dict = I18N[langCode];
 
-  // Set HTML direction (RTL / LTR)
+  // Set HTML direction (RTL / LTR) & language attribute
   document.documentElement.setAttribute('dir', dict.dir);
   document.documentElement.setAttribute('lang', langCode);
 
@@ -303,13 +307,19 @@ function renderDashboard() {
   document.getElementById('hero-losses').textContent = losses;
   document.getElementById('hero-winrate-badge').textContent = `${winRate}% W/R`;
 
-  // Recent match
+  // Recent match + Goal Share Gauge Bar
   const recentBox = document.getElementById('recent-match-container');
   if (state.tournaments.length === 0) {
     recentBox.innerHTML = `<div style="text-align:center; padding:12px; color:var(--text-muted);">${t('loading')}</div>`;
   } else {
     const tItem = state.tournaments[0];
     const badgeClass = tItem.result === 'win' ? 't-badge-win' : tItem.result === 'loss' ? 't-badge-loss' : 't-badge-draw';
+    
+    // Calculate Goal Gauge Percentages
+    const totalGoals = (tItem.our_total_goals || 0) + (tItem.opponent_total_goals || 0);
+    const ourPct = totalGoals > 0 ? ((tItem.our_total_goals / totalGoals) * 100).toFixed(1) : 50;
+    const oppPct = totalGoals > 0 ? ((tItem.opponent_total_goals / totalGoals) * 100).toFixed(1) : 50;
+
     recentBox.innerHTML = `
       <div class="t-card pulse-hover" onclick="openTournamentModal('${tItem.tournament_id}')">
         <div class="t-banner">
@@ -323,12 +333,22 @@ function renderDashboard() {
             <span class="t-score">${tItem.opponent_total_goals}</span>
           </div>
         </div>
+
+        <!-- Broadcast Goal Gauge Progress Bar -->
+        <div class="goal-gauge-wrap" title="Goal Share Split">
+          <div class="goal-gauge-our" style="width: ${ourPct}%;"></div>
+          <div class="goal-gauge-opp" style="width: ${oppPct}%;"></div>
+        </div>
+
         <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
           <span class="tag-badge ${badgeClass}">${tItem.result ? tItem.result.toUpperCase() : 'IN PROGRESS'}</span>
           <span style="font-size:0.7rem; color:var(--text-muted);">${tItem.date}</span>
         </div>
       </div>
     `;
+
+    // Render TOTW (Team of the Tournament Spotlight)
+    renderTOTW(tItem);
   }
 
   // Top performers
@@ -363,10 +383,37 @@ function renderDashboard() {
   }
 }
 
+// Render Team of the Tournament Spotlight Banner
+function renderTOTW(recentTournament) {
+  const totwBox = document.getElementById('totw-container');
+  if (!recentTournament || !recentTournament.matches || recentTournament.matches.length === 0) {
+    document.getElementById('totw-card-box').style.display = 'none';
+    return;
+  }
+
+  document.getElementById('totw-card-box').style.display = 'block';
+
+  // Sort match entries by goals descending
+  const sorted = [...recentTournament.matches].sort((a, b) => b.goals_for - a.goals_for).slice(0, 3);
+
+  totwBox.innerHTML = sorted.map((m, idx) => `
+    <div class="totw-card" onclick="openPlayerModal('${m.player_id}')">
+      <div class="totw-badge">${idx === 0 ? '👑 MVP' : `#${idx + 1} TOP`}</div>
+      <div class="totw-name">${escapeHTML(m.player_display_name || m.player_id)}</div>
+      <div class="totw-score">${m.goals_for} G</div>
+    </div>
+  `).join('');
+}
+
 function renderTournaments() {
   const container = document.getElementById('tournaments-list-container');
   container.innerHTML = state.tournaments.map(tItem => {
     const badgeClass = tItem.result === 'win' ? 't-badge-win' : tItem.result === 'loss' ? 't-badge-loss' : 't-badge-draw';
+    
+    const totalGoals = (tItem.our_total_goals || 0) + (tItem.opponent_total_goals || 0);
+    const ourPct = totalGoals > 0 ? ((tItem.our_total_goals / totalGoals) * 100).toFixed(1) : 50;
+    const oppPct = totalGoals > 0 ? ((tItem.opponent_total_goals / totalGoals) * 100).toFixed(1) : 50;
+
     return `
       <div class="t-card pulse-hover" style="margin-bottom:12px;" onclick="openTournamentModal('${tItem.tournament_id}')">
         <div class="t-banner">
@@ -380,6 +427,12 @@ function renderTournaments() {
             <span class="t-score">${tItem.opponent_total_goals}</span>
           </div>
         </div>
+
+        <div class="goal-gauge-wrap">
+          <div class="goal-gauge-our" style="width: ${ourPct}%;"></div>
+          <div class="goal-gauge-opp" style="width: ${oppPct}%;"></div>
+        </div>
+
         <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
           <span class="tag-badge ${badgeClass}">${tItem.result ? tItem.result.toUpperCase() : 'IN PROGRESS'}</span>
           <span style="font-size:0.7rem; color:var(--text-muted);">${tItem.date} • ${tItem.format || '32v32'}</span>
@@ -485,7 +538,6 @@ function openPlayerModal(playerId) {
     eligHTML = `<div class="tag-badge t-badge-draw" style="margin-bottom:12px; width:100%; text-align:center;">${t('eligibility_warn', { n: streak })}</div>`;
   }
 
-  // Generate 7-Day Performance Points
   const chartData = build7DayPerformanceData(player);
 
   content.innerHTML = `

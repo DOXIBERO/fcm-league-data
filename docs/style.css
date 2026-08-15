@@ -1,6 +1,7 @@
 /* ============================================
-   БРАТВА FC Mobile — OPERA GX RED ESPORTS SYSTEM
-   High-density, sharp obsidian-crimson theme
+   БРАТВА FC Mobile — OPERA GX ESPORTS COMMAND CENTER
+   Carbon-obsidian aesthetic with neon crimson glow,
+   multilingual typography & broadcast match gauges
    ============================================ */
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -9,21 +10,20 @@
   /* Opera GX Dark Palette */
   --bg-dark: #08080b;
   --bg-card: #111116;
-  --bg-card-hover: #181820;
-  --bg-card-active: #20202a;
-  --bg-input: #0f0f14;
+  --bg-card-hover: #181822;
+  --bg-input: #0e0e14;
 
-  --border-color: #22222d;
+  --border-color: #20202c;
   --border-highlight: #ff0038;
 
   /* Typography */
-  --text-main: #f5f5f8;
-  --text-muted: #75758a;
-  --text-sub: #a0a0b8;
+  --text-main: #f8f8fc;
+  --text-muted: #75758c;
+  --text-sub: #a2a2b8;
 
   /* Accents */
   --gx-red: #ff0038;
-  --gx-red-glow: rgba(255, 0, 56, 0.4);
+  --gx-red-glow: rgba(255, 0, 56, 0.45);
   --gx-red-bg: rgba(255, 0, 56, 0.12);
   --gx-red-border: rgba(255, 0, 56, 0.35);
 
@@ -34,7 +34,10 @@
   --draw-yellow: #ffb700;
   --draw-bg: rgba(255, 183, 0, 0.1);
 
-  /* Geometry & Spacing (High Density) */
+  --gold: #ffd700;
+  --gold-glow: rgba(255, 215, 0, 0.3);
+
+  /* Geometry & Spacing */
   --radius-xs: 4px;
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -52,6 +55,17 @@
   --font-body: 'Inter', system-ui, sans-serif;
 }
 
+/* Regional Font Overrides for High-Impact Typography */
+html[lang="ar"] {
+  --font-display: 'Changa', sans-serif;
+  --font-body: 'Changa', sans-serif;
+}
+
+html[lang="ru"] .brand-text,
+html[lang="ru"] .card-title-sm {
+  font-family: 'Russo One', sans-serif;
+}
+
 html {
   font-size: 15px;
   background-color: var(--bg-dark);
@@ -65,7 +79,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Background Cyber Grid Accent */
+/* Background Carbon Grid Accent */
 body::before {
   content: '';
   position: fixed;
@@ -111,21 +125,21 @@ body::before {
 }
 
 .brand-crest {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .brand-crest:hover {
-  transform: scale(1.1) rotate(-3deg);
+  transform: scale(1.12) rotate(-3deg);
 }
 
 .crest-svg {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 0 8px var(--gx-red-glow));
+  filter: drop-shadow(0 0 10px var(--gx-red-glow));
 }
 
 .brand-details {
@@ -136,11 +150,11 @@ body::before {
 
 .brand-text {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 900;
   letter-spacing: 0.06em;
   color: #ffffff;
-  text-shadow: 0 0 10px rgba(255, 0, 56, 0.4);
+  text-shadow: 0 0 12px rgba(255, 0, 56, 0.5);
 }
 
 .brand-subtext {
@@ -448,7 +462,7 @@ body::before {
   margin-top: 4px;
 }
 
-/* --- Tournament Card --- */
+/* --- Broadcast Match Overlay & Goal Gauge Bar --- */
 .t-card {
   cursor: pointer;
   transition: border-color 0.15s ease, transform 0.15s ease;
@@ -463,7 +477,7 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #0c0c10;
+  background: #0b0b10;
   padding: var(--gap-md);
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-color);
@@ -493,6 +507,30 @@ body::before {
   color: #fff;
 }
 
+/* Goal Share Progress Bar Gauge */
+.goal-gauge-wrap {
+  width: 100%;
+  height: 6px;
+  background: #1a1a24;
+  border-radius: 3px;
+  overflow: hidden;
+  display: flex;
+  margin: 10px 0 6px;
+}
+
+.goal-gauge-our {
+  height: 100%;
+  background: var(--gx-red);
+  box-shadow: 0 0 8px var(--gx-red-glow);
+  transition: width 0.5s ease-out;
+}
+
+.goal-gauge-opp {
+  height: 100%;
+  background: #444456;
+  transition: width 0.5s ease-out;
+}
+
 .t-badge-win { color: var(--win-green); background: var(--win-bg); border: 1px solid var(--win-green); }
 .t-badge-loss { color: var(--loss-red); background: var(--loss-bg); border: 1px solid var(--loss-red); }
 .t-badge-draw { color: var(--draw-yellow); background: var(--draw-bg); border: 1px solid var(--draw-yellow); }
@@ -504,6 +542,53 @@ body::before {
   font-size: 0.65rem;
   font-weight: 800;
   text-transform: uppercase;
+}
+
+/* --- Team of the Tournament Spotlight --- */
+.totw-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.totw-card {
+  background: linear-gradient(145deg, #1f1a10 0%, #12100a 100%);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  text-align: center;
+  box-shadow: 0 0 12px var(--gold-glow);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.totw-card:hover {
+  transform: translateY(-2px);
+}
+
+.totw-badge {
+  font-size: 0.55rem;
+  font-weight: 900;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.totw-name {
+  font-weight: 800;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 3px 0;
+}
+
+.totw-score {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--gold);
 }
 
 /* --- High-Density Data Lists & Tables --- */
