@@ -182,12 +182,11 @@ body {
   box-shadow: 1px 2px 3px var(--tape-shadow);
   /* Jagged tape edges using clip-path or simple border-radius */
   border-radius: 2px 6px 3px 5px;
-  transform: rotate(-2deg);
   transition: transform 0.2s;
 }
 
 .lang-btn:hover {
-  transform: rotate(1deg) scale(1.05);
+  transform: scale(1.05);
 }
 
 .flag-icon-wrap {
@@ -307,7 +306,6 @@ body {
   align-items: center;
   z-index: 100;
   border-radius: 4px;
-  transform: translateX(-50%) rotate(-0.5deg);
 }
 
 .nav-item {
@@ -336,7 +334,7 @@ body {
 
 .nav-item.active {
   color: var(--pencil-main);
-  transform: scale(1.1) rotate(2deg);
+  transform: scale(1.1);
 }
 .nav-item.active svg {
   stroke: var(--pencil-red);
@@ -359,12 +357,10 @@ body {
   margin-bottom: 25px;
   box-shadow: 2px 4px 8px rgba(0,0,0,0.08);
   border-radius: 2px 25px 2px 2px; /* Slight dog-ear */
-  transform: rotate(-1deg);
   line-height: 1.5; /* override notebook lines inside card */
 }
 
 .note-card:nth-child(even) {
-  transform: rotate(1deg);
 }
 
 /* Pin Graphic */
@@ -408,7 +404,7 @@ body {
   width: 80px;
   top: -10px;
   left: 50%;
-  transform: translateX(-50%) rotate(-2deg);
+  transform: translateX(-50%);
   z-index: 5;
   /* Jagged edges */
   clip-path: polygon(0 5%, 10% 0, 20% 5%, 30% 0, 40% 5%, 50% 0, 60% 5%, 70% 0, 80% 5%, 90% 0, 100% 5%, 100% 95%, 90% 100%, 80% 95%, 70% 100%, 60% 95%, 50% 100%, 40% 95%, 30% 100%, 20% 95%, 10% 100%, 0 95%);
@@ -601,7 +597,6 @@ svg { overflow: visible; }
   position: relative;
   overflow-y: auto;
   line-height: 30px;
-  transform: rotate(1deg);
 }
 .modal-page::before { /* Margin line for modal */
   content: '';
@@ -622,7 +617,6 @@ svg { overflow: visible; }
   font-size: 1.2rem;
   color: var(--pencil-red);
   border: none;
-  transform: rotate(15deg);
   cursor: pointer;
   box-shadow: 1px 2px 3px var(--tape-shadow);
   clip-path: polygon(5% 0, 95% 5%, 100% 95%, 0 100%);
@@ -634,7 +628,7 @@ svg { overflow: visible; }
 [dir="rtl"] .modal-page::before {
   left: auto; right: 40px;
 }
-[dir="rtl"] .close-tape { right: auto; left: -10px; transform: rotate(-15deg); }
+[dir="rtl"] .close-tape { right: auto; left: -10px; }
 
 /* Status Stamps (like rubber stamps) */
 .stamp {
@@ -645,7 +639,6 @@ svg { overflow: visible; }
   font-family: var(--font-formal);
   font-weight: bold;
   text-transform: uppercase;
-  transform: rotate(-3deg);
   opacity: 0.8;
   mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.8'/%3E%3C/svg%3E");
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.8'/%3E%3C/svg%3E");
@@ -679,7 +672,6 @@ svg { overflow: visible; }
   background: white;
   padding: 10px 10px 20px 10px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-  transform: rotate(-2deg);
   text-align: center;
   font-family: var(--font-hand);
 }

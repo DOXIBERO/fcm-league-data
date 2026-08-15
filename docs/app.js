@@ -341,30 +341,30 @@ function renderDashboard() {
 
     recentBox.innerHTML = `
       <div style="cursor: pointer; padding: 5px;" onclick="openTournamentModal('${tItem.tournament_id}')">
-        <div style="display: flex; justify-content: space-between; align-items: center; font-family: var(--font-formal);">
-          <div style="font-size: 1.5rem; font-weight: bold;">Братва</div>
-          <div style="font-size: 2rem;">${tItem.our_total_goals}</div>
-        </div>
-        <div style="text-align: center; font-family: var(--font-hand); color: var(--pencil-light);">VS</div>
-        <div style="display: flex; justify-content: space-between; align-items: center; font-family: var(--font-formal);">
-          <div style="font-size: 1.2rem; max-width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHTML(tItem.opponent_league)}</div>
-          <div style="font-size: 1.8rem;">${tItem.opponent_total_goals}</div>
+        <div style="display: flex; justify-content: space-around; align-items: center;">
+          <div style="text-align: center;">
+            <div class="username" style="font-size: 1.2rem;">Братва</div>
+            <div style="font-size: 1.8rem; font-family: var(--font-formal); font-weight: bold;">${tItem.our_total_goals}</div>
+          </div>
+          <div style="text-align: center; font-family: var(--font-hand); color: var(--pencil-light);">VS</div>
+          <div style="text-align: center;">
+            <div class="username" style="font-size: 1.2rem; max-width: 80px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHTML(tItem.opponent_league)}</div>
+            <div style="font-size: 1.8rem; font-family: var(--font-formal); font-weight: bold;">${tItem.opponent_total_goals}</div>
+          </div>
         </div>
 
         <!-- Scribble Gauge -->
-        <div class="gauge-wrap">
+        <div class="gauge-wrap" style="height: 10px; margin: 10px 0;">
           <div class="gauge-fill" style="width: ${ourPct}%;"></div>
           <div class="gauge-fill-opp" style="width: ${oppPct}%;"></div>
         </div>
 
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 15px;">
-          <span class="stamp ${stampClass}">${tItem.result ? tItem.result : 'In Progress'}</span>
-          <span class="hand-text" style="color:var(--pencil-light);">${tItem.date}</span>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="stamp ${stampClass}" style="font-size: 0.8rem;">${tItem.result ? tItem.result : 'In Progress'}</span>
+          <span class="hand-text" style="color:var(--pencil-light); font-size: 0.9rem;">${tItem.date}</span>
         </div>
       </div>
     `;
-
-    renderTOTW(tItem);
   }
 
   // Top performers
@@ -399,25 +399,6 @@ function renderDashboard() {
   } else {
     flaggedBox.style.display = 'none';
   }
-}
-
-function renderTOTW(recentTournament) {
-  const totwBox = document.getElementById('totw-container');
-  if (!recentTournament || !recentTournament.matches || recentTournament.matches.length === 0) {
-    document.getElementById('totw-card-box').style.display = 'none';
-    return;
-  }
-
-  document.getElementById('totw-card-box').style.display = 'block';
-  const sorted = [...recentTournament.matches].sort((a, b) => b.goals_for - a.goals_for).slice(0, 3);
-
-  totwBox.innerHTML = sorted.map((m, idx) => `
-    <div style="text-align: center; cursor: pointer;" onclick="openPlayerModal('${m.player_id}')">
-      <div class="hand-text" style="color: var(--pencil-gold);">${idx === 0 ? '⭐ #1' : `#${idx+1}`}</div>
-      <div class="username" style="font-size: 1rem; max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHTML(m.player_display_name || m.player_id)}</div>
-      <div style="font-family: var(--font-formal); font-weight: bold;">${m.goals_for}</div>
-    </div>
-  `).join('');
 }
 
 function renderTournaments() {
@@ -703,7 +684,6 @@ function openTournamentModal(tId) {
   `;
 
   overlay.style.display = 'flex';
-  document.getElementById('modal-page').style.transform = `rotate(${(Math.random()*2-1).toFixed(1)}deg)`;
 }
 
 function getPlayerGoals(player) {
