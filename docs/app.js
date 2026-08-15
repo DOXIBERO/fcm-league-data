@@ -548,7 +548,7 @@ function openPlayerModal(playerId) {
       ${(player.matches || []).map(m => `
         <div style="display:flex; justify-content:space-between; border-bottom: 1px dashed var(--pencil-light); padding: 5px 0;">
           <span class="hand-text">vs ${escapeHTML(m.opponent_display_name)}</span>
-          <span class="hand-text" style="font-weight:bold;">${m.goals_for} G (${m.turns_played || 3}/3)</span>
+          <span class="hand-text" style="font-weight:bold;">${m.goals_for} G (${m.turns_played !== undefined ? m.turns_played : 3}/3)</span>
         </div>
       `).join('')}
     </div>
@@ -581,7 +581,7 @@ function build7DayPerformanceData(player) {
         dayObj.match = m;
         dayObj.tournament = tInfo;
         const goals = m.goals_for || 0;
-        const turns = m.turns_played || 3;
+        const turns = m.turns_played !== undefined ? m.turns_played : 3;
         if (turns === 3 && goals >= 20) dayObj.status = 'great';
         else if (turns === 0) dayObj.status = 'absent';
         else dayObj.status = 'bad';
@@ -631,12 +631,12 @@ function attachChartPointListeners(daysData) {
       } else if (d.status === 'great') {
         summaryVerdict.innerHTML = `
           <span style="color:var(--pencil-green);">${t('verdict_excellent')} (${d.match.goals_for}G)</span>
-          <div class="hand-text" style="font-size:0.9rem; margin-top:2px;">vs ${escapeHTML(d.match.opponent_display_name)} • ${d.match.turns_played||3}/3 ${t('turns_completed')}</div>
+          <div class="hand-text" style="font-size:0.9rem; margin-top:2px;">vs ${escapeHTML(d.match.opponent_display_name)} • ${d.match.turns_played !== undefined ? d.match.turns_played : 3}/3 ${t('turns_completed')}</div>
         `;
       } else {
         summaryVerdict.innerHTML = `
           <span style="color:var(--pencil-red);">${t('verdict_underperformed')} (${d.match.goals_for}G)</span>
-          <div class="hand-text" style="font-size:0.9rem; margin-top:2px;">vs ${escapeHTML(d.match.opponent_display_name)} • ${d.match.turns_played||0}/3 ${t('turns_completed')}</div>
+          <div class="hand-text" style="font-size:0.9rem; margin-top:2px;">vs ${escapeHTML(d.match.opponent_display_name)} • ${d.match.turns_played !== undefined ? d.match.turns_played : 0}/3 ${t('turns_completed')}</div>
         `;
       }
     });
@@ -677,7 +677,7 @@ function openTournamentModal(tId) {
     <div>
       ${matches.map(m => `
         <div class="sketch-row" style="display:flex; justify-content:space-between; border-bottom: 1px dashed var(--pencil-light); padding: 5px 0;" onclick="openPlayerModal('${m.player_id}')">
-          <span class="username">${escapeHTML(m.player_display_name || m.player_id)} <span class="hand-text" style="font-size:0.8rem; font-weight:normal;">(${m.turns_played || 3}/3)</span></span>
+          <span class="username">${escapeHTML(m.player_display_name || m.player_id)} <span class="hand-text" style="font-size:0.8rem; font-weight:normal;">(${m.turns_played !== undefined ? m.turns_played : 3}/3)</span></span>
           <span class="hand-text" style="font-weight:bold;">${m.goals_for} G</span>
         </div>
       `).join('')}
