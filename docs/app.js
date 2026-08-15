@@ -180,18 +180,18 @@ const SoundManager = {
     osc.connect(gain);
     gain.connect(this.ctx.destination);
     
-    // Cyber/Tech digital "blip" (Opera GX style)
-    osc.type = 'triangle';
-    osc.frequency.setValueAtTime(3000, this.ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(500, this.ctx.currentTime + 0.03);
+    // Mature, premium UI "tick" (Subtle, short, and muted)
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(600, this.ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(300, this.ctx.currentTime + 0.01);
     
-    // Very tight, punchy envelope
+    // Incredibly short envelope (15ms)
     gain.gain.setValueAtTime(0, this.ctx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.08, this.ctx.currentTime + 0.005);
-    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.04);
+    gain.gain.linearRampToValueAtTime(0.04, this.ctx.currentTime + 0.002);
+    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.015);
     
     osc.start();
-    osc.stop(this.ctx.currentTime + 0.04);
+    osc.stop(this.ctx.currentTime + 0.015);
   }
 };
 
