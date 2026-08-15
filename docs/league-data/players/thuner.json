@@ -16,6 +16,18 @@
       "player_display_name": "thuner",
       "is_aggregate": true,
       "turns_played": 3
+    },
+    {
+      "tournament_id": "2026-08-11_onsoranje",
+      "match_index_in_tournament": 21,
+      "opponent_display_name": "OnsOranje®",
+      "opponent_id": "onsoranje",
+      "goals_for": 0,
+      "goals_against": 0,
+      "result": "draw",
+      "turns_played": 0,
+      "player_display_name": "thuner",
+      "player_id": "thuner"
     }
   ],
   "eligibility_streak": {
