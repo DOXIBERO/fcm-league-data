@@ -165,6 +165,55 @@ const I18N = {
 const DATA_PATHS = ['./league-data', '../league-data', 'league-data'];
 let activePath = './league-data';
 
+// --- Sound Manager (Web Audio API) ---
+const SoundManager = {
+  ctx: null,
+  init() {
+    if (!this.ctx) {
+      this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+  },
+  playPop() {
+    if (!this.ctx) return;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    osc.connect(gain);
+    gain.connect(this.ctx.destination);
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(400, this.ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(600, this.ctx.currentTime + 0.05);
+    gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.05);
+    osc.start();
+    osc.stop(this.ctx.currentTime + 0.05);
+  },
+  playPaper() {
+    if (!this.ctx) return;
+    const bufferSize = this.ctx.sampleRate * 0.1; // 100ms
+    const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = Math.random() * 2 - 1; // White noise
+    }
+    const noise = this.ctx.createBufferSource();
+    noise.buffer = buffer;
+    const filter = this.ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 800; // Muffled paper sound
+    const gain = this.ctx.createGain();
+    gain.gain.setValueAtTime(0.3, this.ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.1);
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(this.ctx.destination);
+    noise.start();
+  }
+};
+
+document.addEventListener('click', () => {
+  SoundManager.init();
+}, { once: true });
+
 const state = {
   lang: 'en',
   playersIndex: {},
@@ -282,6 +331,7 @@ function setupNavigation() {
   const navs = document.querySelectorAll('.nav-item');
   navs.forEach(nav => {
     nav.addEventListener('click', () => {
+      SoundManager.playPaper();
       const newTab = nav.dataset.tab;
       if (newTab === state.activeTab) return;
       
@@ -530,8 +580,18 @@ function openPlayerModal(playerId) {
   const content = document.getElementById('modal-player-content');
   const page = document.getElementById('modal-page');
 
-  document.getElementById('modal-close-x').onclick = () => overlay.style.display = 'none';
-  overlay.onclick = (e) => { if (e.target === overlay) overlay.style.display = 'none'; };
+  SoundManager.playPop();
+
+  document.getElementById('modal-close-x').onclick = () => {
+    SoundManager.playPop();
+    overlay.style.display = 'none';
+  };
+  overlay.onclick = (e) => { 
+    if (e.target === overlay) {
+      SoundManager.playPop();
+      overlay.style.display = 'none';
+    } 
+  };
 
   const streak = player.eligibility_streak?.current_fail_streak || 0;
   const isFlagged = player.eligibility_streak?.flagged_for_review;
@@ -679,8 +739,13 @@ function openTournamentModal(tId) {
   const overlay = document.getElementById('player-modal');
   const content = document.getElementById('modal-player-content');
   
-  document.getElementById('modal-close-x').onclick = () => overlay.style.display = 'none';
-  overlay.onclick = (e) => { if (e.target === overlay) overlay.style.display = 'none'; };
+  SoundManager.playPop();
+
+  document.getElementById('modal-close-x').onclick = () => {
+    SoundManager.playPop();
+    overlay.style.display = 'none';
+  };
+  overlay.onclick = (e) => { if (e.target === overlay) { SoundManager.playPop(); overlay.style.display = 'none'; } };
 
   const matches = [...(tItem.matches || [])].sort((a, b) => b.goals_for - a.goals_for);
 
