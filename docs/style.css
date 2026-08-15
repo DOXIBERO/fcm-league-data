@@ -145,7 +145,7 @@ body {
 .brand-text {
   font-family: 'Rubik Marker Hatch', 'Amatic SC', cursive;
   font-size: 1.8rem;
-  font-weight: 700;
+  font-weight: 400;
   text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 1px;
@@ -153,16 +153,16 @@ body {
 
 .brand-red {
   color: transparent;
-  -webkit-text-stroke: 2px var(--pencil-red);
-  background: repeating-linear-gradient(45deg, var(--pencil-red), var(--pencil-red) 2px, transparent 2px, transparent 4px);
+  -webkit-text-stroke: 1px var(--pencil-red);
+  background: repeating-linear-gradient(45deg, var(--pencil-red), var(--pencil-red) 1px, transparent 1px, transparent 4px);
   -webkit-background-clip: text;
   background-clip: text;
 }
 
 .brand-blue {
   color: transparent;
-  -webkit-text-stroke: 2px var(--pencil-blue);
-  background: repeating-linear-gradient(-45deg, var(--pencil-blue), var(--pencil-blue) 2px, transparent 2px, transparent 4px);
+  -webkit-text-stroke: 1px var(--pencil-blue);
+  background: repeating-linear-gradient(-45deg, var(--pencil-blue), var(--pencil-blue) 1px, transparent 1px, transparent 4px);
   -webkit-background-clip: text;
   background-clip: text;
 }
