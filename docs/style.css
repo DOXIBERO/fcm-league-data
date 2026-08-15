@@ -143,12 +143,20 @@ body {
 }
 
 .brand-text {
-  font-family: var(--font-formal);
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: var(--pencil-main);
+  font-family: 'Rubik Marker Hatch', 'Amatic SC', cursive;
+  font-size: 1.8rem;
+  font-weight: 700;
   text-transform: uppercase;
-  text-decoration: underline wavy var(--pencil-light);
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.brand-red {
+  color: var(--pencil-red);
+}
+
+.brand-blue {
+  color: var(--pencil-blue);
 }
 
 .brand-subtext {
