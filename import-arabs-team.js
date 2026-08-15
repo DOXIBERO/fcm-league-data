@@ -75,4 +75,4 @@ saveTournament(tData);
 
 regeneratePlayersIndex();
 regenerateTournamentsIndex();
-console.log('Ingested ARAB\\'S TEAM!');
+console.log("Ingested ARAB'S TEAM!");

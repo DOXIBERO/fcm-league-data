@@ -1,0 +1,24 @@
+{
+  "player_id": "rts",
+  "display_name": "R.ØÇąÑįTąS",
+  "known_aliases": [],
+  "matches": [
+    {
+      "tournament_id": "2026-08-13_arabs-team",
+      "match_index_in_tournament": 10,
+      "opponent_display_name": "ARAB'S TEAM",
+      "opponent_id": "arabs-team",
+      "goals_for": 0,
+      "goals_against": 0,
+      "result": "draw",
+      "turns_played": 0,
+      "player_display_name": "R.ØÇąÑįTąS",
+      "player_id": "rts"
+    }
+  ],
+  "eligibility_streak": {
+    "current_fail_streak": 1,
+    "last_evaluated_tournament_id": "2026-08-13_arabs-team",
+    "flagged_for_review": false
+  }
+}

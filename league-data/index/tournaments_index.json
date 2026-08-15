@@ -16,5 +16,11 @@
     "opponent_league": "Warga +82™",
     "status": "complete",
     "result": "loss"
+  },
+  "2026-08-13_arabs-team": {
+    "date": "2026-08-13",
+    "opponent_league": "ARAB'S TEAM",
+    "status": "complete",
+    "result": "win"
   }
 }
