@@ -1,15 +1,7 @@
 /* ============================================
-   БРАТВА FC Mobile — Opera GX Esports Engine
-   Multilingual i18n, Dynamic SVG Flags,
-   TOTW Spotlight, Goal Share Gauges, SVG Charting
+   БРАТВА FC Mobile — Notebook Engine
+   Slide animations, sketchy charts, hand-drawn UI
    ============================================ */
-
-const SVG_FLAGS = {
-  en: `<svg class="svg-flag" viewBox="0 0 640 480"><path fill="#012169" d="M0 0h640v480H0z"/><path fill="#FFF" d="m75 0 245 180L565 0h75v55L400 240l240 185v55h-75L320 300 75 480H0v-55l240-185L0 55V0h75z"/><path fill="#C8102E" d="m425 300 215 165v15h-30L380 300h45zM175 180 0 45V30h30l215 165h-70zM0 435l215-165h45L30 480H0v-45zM640 45 425 210h-45L610 0h30v45z"/><path fill="#FFF" d="M240 0v480h160V0H240zM0 160v160h640V160H0z"/><path fill="#C8102E" d="M267 0v480h106V0H267zM0 187v106h640V187H0z"/></svg>`,
-  ar: `<svg class="svg-flag" viewBox="0 0 640 480"><path fill="#007A3D" d="M0 0h640v160H0z"/><path fill="#FFF" d="M0 160h640v160H0z"/><path fill="#000" d="M0 320h640v160H0z"/><path fill="#CE1126" d="M0 0v480l240-240Z"/></svg>`,
-  ru: `<svg class="svg-flag" viewBox="0 0 640 480"><path fill="#fff" d="M0 0h640v160H0z"/><path fill="#0039a6" d="M0 160h640v160H0z"/><path fill="#d52b1e" d="M0 320h640v160H0z"/></svg>`,
-  es: `<svg class="svg-flag" viewBox="0 0 640 480"><path fill="#aa151b" d="M0 0h640v120H0zM0 360h640v120H0z"/><path fill="#f1bf00" d="M0 120h640v240H0z"/></svg>`
-};
 
 const I18N = {
   en: {
@@ -18,16 +10,16 @@ const I18N = {
     wins: 'Wins',
     draws: 'Draws',
     losses: 'Losses',
-    recent_tournament: 'Recent Match Broadcast',
-    totw_spotlight: 'Tournament MVP Spotlight',
+    recent_tournament: 'Recent Match',
+    totw_spotlight: 'MVPs',
     top_performers: 'Top Scorers',
-    flagged_players: '⚠️ Flagged for Admin Review',
-    tournament_history: 'Tournament History',
+    flagged_players: 'Flagged Review',
+    tournament_history: 'Match History',
     player: 'Player',
-    goals: 'Goals',
-    matches: 'Matches',
-    avg_goals: 'Avg GF',
-    search_placeholder: 'Search player name...',
+    goals: 'G',
+    matches: 'M',
+    avg_goals: 'Avg',
+    search_placeholder: 'Search player...',
     all_time: 'All Time',
     window_7d: '7 Days',
     window_30d: '30 Days',
@@ -35,105 +27,105 @@ const I18N = {
     nav_tournaments: 'Matches',
     nav_roster: 'Roster',
     nav_leaderboard: 'Stats',
-    loading: 'Loading...',
-    performance_chart: '7-Day Performance Trend',
-    click_point_hint: 'Click data point for match breakdown',
-    turns_completed: 'Turns Completed',
-    verdict_excellent: 'EXCELLENT PERFORMANCE',
-    verdict_underperformed: 'UNDERPERFORMED',
-    verdict_absent: 'DID NOT PLAY / SKIPPED',
-    verdict_no_tournament: 'NO TOURNAMENT HELD',
-    eligibility_ok: 'ELIGIBLE (0 FAIL STREAK)',
-    eligibility_warn: 'WARNING (FAIL STREAK: {n})',
-    eligibility_flagged: '⚠️ FLAGGED (3 CONSECUTIVE FAILS)'
+    loading: 'Loading notes...',
+    performance_chart: '7-Day Trend',
+    click_point_hint: '(Tap a point for details)',
+    turns_completed: 'turns',
+    verdict_excellent: 'Excellent!',
+    verdict_underperformed: 'Needs work',
+    verdict_absent: 'Absent/Skipped',
+    verdict_no_tournament: 'No match today',
+    eligibility_ok: 'Eligible (0 Fails)',
+    eligibility_warn: 'Warning ({n} Fails)',
+    eligibility_flagged: 'FLAGGED (3 Fails!)'
   },
   ar: {
     dir: 'rtl',
-    league_record: 'نظرة عامة على الدوري',
-    wins: 'انتصارات',
-    draws: 'تعادلات',
-    losses: 'هزائم',
-    recent_tournament: 'البث المباشر لأحدث مباراة',
-    totw_spotlight: 'نجوم المباراة الأخيرة',
-    top_performers: 'أفضل الهدافين',
-    flagged_players: '⚠️ مراجعة إدارية مطلوبة',
-    tournament_history: 'سجل البطولات',
+    league_record: 'نظرة عامة',
+    wins: 'فوز',
+    draws: 'تعادل',
+    losses: 'خسارة',
+    recent_tournament: 'آخر مباراة',
+    totw_spotlight: 'أفضل اللاعبين',
+    top_performers: 'الهدافين',
+    flagged_players: 'مراجعة',
+    tournament_history: 'سجل المباريات',
     player: 'اللاعب',
-    goals: 'الأهداف',
-    matches: 'المباريات',
-    avg_goals: 'معدل الأهداف',
-    search_placeholder: 'بحث عن اسم لاعب...',
-    all_time: 'كل الأوقات',
+    goals: 'أهداف',
+    matches: 'م',
+    avg_goals: 'معدل',
+    search_placeholder: 'بحث...',
+    all_time: 'الكل',
     window_7d: '7 أيام',
     window_30d: '30 يوم',
     nav_dash: 'الرئيسية',
-    nav_tournaments: 'المباريات',
-    nav_roster: 'التشكيلة',
-    nav_leaderboard: 'الإحصائيات',
+    nav_tournaments: 'مباريات',
+    nav_roster: 'تشكيلة',
+    nav_leaderboard: 'إحصائيات',
     loading: 'جاري التحميل...',
-    performance_chart: 'مؤشر الأداء (آخر 7 أيام)',
-    click_point_hint: 'انقر على النقطة لعرض تفاصيل اليوم',
-    turns_completed: 'المحاولات المكتملة',
-    verdict_excellent: 'أداء ممتاز',
-    verdict_underperformed: 'أداء ضعيف',
-    verdict_absent: 'لم يشارك / غائب',
-    verdict_no_tournament: 'لا توجد بطولة في هذا اليوم',
-    eligibility_ok: 'مؤهل (سلسلة الفشل: 0)',
-    eligibility_warn: 'تحذير (سلسلة الفشل: {n})',
-    eligibility_flagged: '⚠️ مراجعة مطلوبة (3 إخفاقات متتالية)'
+    performance_chart: 'أداء 7 أيام',
+    click_point_hint: '(انقر للتفاصيل)',
+    turns_completed: 'محاولات',
+    verdict_excellent: 'ممتاز!',
+    verdict_underperformed: 'ضعيف',
+    verdict_absent: 'غائب',
+    verdict_no_tournament: 'لا توجد مباراة',
+    eligibility_ok: 'مؤهل (0 فشل)',
+    eligibility_warn: 'تحذير ({n} فشل)',
+    eligibility_flagged: 'مراجعة (3 فشل!)'
   },
   ru: {
     dir: 'ltr',
-    league_record: 'Обзор лиги',
+    league_record: 'Обзор Лиги',
     wins: 'Победы',
     draws: 'Ничьи',
     losses: 'Поражения',
-    recent_tournament: 'Трансляция последнего матча',
-    totw_spotlight: 'Герои последнего матча',
-    top_performers: 'Лучшие бомбардиры',
-    flagged_players: '⚠️ Флаг проверки администратора',
-    tournament_history: 'История турниров',
+    recent_tournament: 'Последний матч',
+    totw_spotlight: 'Лучшие',
+    top_performers: 'Бомбардиры',
+    flagged_players: 'Проверка',
+    tournament_history: 'История матчей',
     player: 'Игрок',
-    goals: 'Голы',
-    matches: 'Матчи',
-    avg_goals: 'Ср. голы',
-    search_placeholder: 'Поиск игрока...',
-    all_time: 'Все время',
+    goals: 'Г',
+    matches: 'М',
+    avg_goals: 'Ср.',
+    search_placeholder: 'Поиск...',
+    all_time: 'Всё время',
     window_7d: '7 дней',
     window_30d: '30 дней',
     nav_dash: 'Главная',
     nav_tournaments: 'Матчи',
     nav_roster: 'Состав',
-    nav_leaderboard: 'Статистика',
+    nav_leaderboard: 'Стата',
     loading: 'Загрузка...',
-    performance_chart: 'График формы за 7 дней',
-    click_point_hint: 'Нажмите на точку для деталей дня',
-    turns_completed: 'Сыграно ходов',
-    verdict_excellent: 'ОТЛИЧНЫЙ РЕЗУЛЬТАТ',
-    verdict_underperformed: 'СЛАБЫЙ РЕЗУЛЬТАТ',
-    verdict_absent: 'НЕ УЧАСТВОВАЛ / ПРОПУСК',
-    verdict_no_tournament: 'ТУРНИР НЕ ПРОВОДИЛСЯ',
-    eligibility_ok: 'ДОПУЩЕН (Серия провалов: 0)',
-    eligibility_warn: 'ПРЕДУПРЕЖДЕНИЕ (Провалов: {n})',
-    eligibility_flagged: '⚠️ ТРЕБУЕТСЯ ПРОВЕРКА (3 провала подряд)'
+    performance_chart: 'Форма 7 дней',
+    click_point_hint: '(Жми на точку)',
+    turns_completed: 'ходов',
+    verdict_excellent: 'Отлично!',
+    verdict_underperformed: 'Слабо',
+    verdict_absent: 'Пропуск',
+    verdict_no_tournament: 'Нет матча',
+    eligibility_ok: 'Допущен (0 провалов)',
+    eligibility_warn: 'Внимание ({n} пров.)',
+    eligibility_flagged: 'БАН? (3 провала!)'
   },
   es: {
     dir: 'ltr',
-    league_record: 'Resumen de Liga',
-    wins: 'Victorias',
-    draws: 'Empates',
-    losses: 'Derrotas',
-    recent_tournament: 'Última Transmisión',
-    totw_spotlight: 'Jugadores Destacados',
-    top_performers: 'Máximos Goleadores',
-    flagged_players: '⚠️ Marcado para Revisión',
-    tournament_history: 'Historial de Torneos',
+    league_record: 'Resumen',
+    wins: 'Vic',
+    draws: 'Emp',
+    losses: 'Der',
+    recent_tournament: 'Último Partido',
+    totw_spotlight: 'Destacados',
+    top_performers: 'Goleadores',
+    flagged_players: 'En Revisión',
+    tournament_history: 'Historial',
     player: 'Jugador',
     goals: 'Goles',
-    matches: 'Partidos',
-    avg_goals: 'Prom. Goles',
-    search_placeholder: 'Buscar jugador...',
-    all_time: 'Todo el Tiempo',
+    matches: 'P',
+    avg_goals: 'Prom',
+    search_placeholder: 'Buscar...',
+    all_time: 'Todo',
     window_7d: '7 Días',
     window_30d: '30 Días',
     nav_dash: 'Inicio',
@@ -141,16 +133,16 @@ const I18N = {
     nav_roster: 'Plantilla',
     nav_leaderboard: 'Stats',
     loading: 'Cargando...',
-    performance_chart: 'Tendencia de 7 Días',
-    click_point_hint: 'Toca un punto para ver detalles',
-    turns_completed: 'Turnos Jugados',
-    verdict_excellent: 'RENDIMIENTO EXCELENTE',
-    verdict_underperformed: 'BAJO RENDIMIENTO',
-    verdict_absent: 'NO JUGÓ / AUSENTE',
-    verdict_no_tournament: 'SIN TORNEO ESTE DÍA',
-    eligibility_ok: 'ELEGIBLE (Racha fallos: 0)',
-    eligibility_warn: 'ADVERTENCIA (Racha fallos: {n})',
-    eligibility_flagged: '⚠️ REVISIÓN REQUERIDA (3 fallos seguidos)'
+    performance_chart: 'Rendimiento 7d',
+    click_point_hint: '(Toca un punto)',
+    turns_completed: 'turnos',
+    verdict_excellent: '¡Excelente!',
+    verdict_underperformed: 'Bajo',
+    verdict_absent: 'Ausente',
+    verdict_no_tournament: 'Sin partido',
+    eligibility_ok: 'Elegible (0 fallos)',
+    eligibility_warn: 'Aviso ({n} fallos)',
+    eligibility_flagged: 'REVISIÓN (3 fallos!)'
   }
 };
 
@@ -167,6 +159,9 @@ const state = {
   searchQuery: '',
   leaderboardWindow: 'all'
 };
+
+// Tabs order for animation direction
+const tabsOrder = ['dashboard', 'tournaments', 'players', 'leaderboard'];
 
 // --- Initialization ---
 document.addEventListener('DOMContentLoaded', async () => {
@@ -207,15 +202,11 @@ function setLanguage(langCode) {
   state.lang = langCode;
   const dict = I18N[langCode];
 
-  // Set HTML direction (RTL / LTR) & language attribute
   document.documentElement.setAttribute('dir', dict.dir);
   document.documentElement.setAttribute('lang', langCode);
 
-  // Update SVG Flag & Language Code in Header
-  document.getElementById('current-flag-container').innerHTML = SVG_FLAGS[langCode];
   document.getElementById('current-lang-code').textContent = langCode.toUpperCase();
 
-  // Translate DOM elements
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
     if (dict[key]) el.textContent = dict[key];
@@ -269,21 +260,49 @@ async function loadData() {
   state.tournaments.sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 
-// --- Navigation ---
+// --- Navigation with Slide Animations ---
 function setupNavigation() {
   const navs = document.querySelectorAll('.nav-item');
   navs.forEach(nav => {
     nav.addEventListener('click', () => {
+      const newTab = nav.dataset.tab;
+      if (newTab === state.activeTab) return;
+      
       navs.forEach(n => n.classList.remove('active'));
       nav.classList.add('active');
-      switchTab(nav.dataset.tab);
+      switchTab(newTab);
     });
   });
 }
 
-function switchTab(tabName) {
-  state.activeTab = tabName;
-  document.querySelectorAll('.tab-page').forEach(p => p.classList.toggle('active', p.id === `tab-${tabName}`));
+function switchTab(newTabName) {
+  const oldIdx = tabsOrder.indexOf(state.activeTab);
+  const newIdx = tabsOrder.indexOf(newTabName);
+  const direction = newIdx > oldIdx ? 'right' : 'left';
+  const isRTL = I18N[state.lang].dir === 'rtl';
+  
+  // Adjust animation direction for RTL
+  const moveNext = isRTL ? (direction === 'left') : (direction === 'right');
+
+  const oldPage = document.getElementById(`tab-${state.activeTab}`);
+  const newPage = document.getElementById(`tab-${newTabName}`);
+
+  // Clean up previous animation classes
+  document.querySelectorAll('.tab-page').forEach(p => {
+    p.classList.remove('slide-in-right', 'slide-in-left', 'slide-out-right', 'slide-out-left', 'active');
+  });
+
+  // Apply new animations
+  oldPage.classList.add('active');
+  if (moveNext) {
+    oldPage.classList.add('slide-out-left');
+    newPage.classList.add('active', 'slide-in-right');
+  } else {
+    oldPage.classList.add('slide-out-right');
+    newPage.classList.add('active', 'slide-in-left');
+  }
+
+  state.activeTab = newTabName;
 }
 
 // --- Renderers ---
@@ -305,15 +324,15 @@ function renderDashboard() {
   document.getElementById('hero-wins').textContent = wins;
   document.getElementById('hero-draws').textContent = draws;
   document.getElementById('hero-losses').textContent = losses;
-  document.getElementById('hero-winrate-badge').textContent = `${winRate}% W/R`;
+  document.getElementById('hero-winrate-badge').textContent = `${winRate}% WR`;
 
-  // Recent match + Goal Share Gauge Bar
+  // Recent match
   const recentBox = document.getElementById('recent-match-container');
   if (state.tournaments.length === 0) {
-    recentBox.innerHTML = `<div style="text-align:center; padding:12px; color:var(--text-muted);">${t('loading')}</div>`;
+    recentBox.innerHTML = `<div style="text-align:center; padding:12px;" class="hand-text">${t('loading')}</div>`;
   } else {
     const tItem = state.tournaments[0];
-    const badgeClass = tItem.result === 'win' ? 't-badge-win' : tItem.result === 'loss' ? 't-badge-loss' : 't-badge-draw';
+    const stampClass = tItem.result === 'win' ? 'stamp-win' : tItem.result === 'loss' ? 'stamp-loss' : 'stamp-draw';
     
     // Calculate Goal Gauge Percentages
     const totalGoals = (tItem.our_total_goals || 0) + (tItem.opponent_total_goals || 0);
@@ -321,33 +340,30 @@ function renderDashboard() {
     const oppPct = totalGoals > 0 ? ((tItem.opponent_total_goals / totalGoals) * 100).toFixed(1) : 50;
 
     recentBox.innerHTML = `
-      <div class="t-card pulse-hover" onclick="openTournamentModal('${tItem.tournament_id}')">
-        <div class="t-banner">
-          <div class="t-team">
-            <span class="t-team-name">Братва</span>
-            <span class="t-score">${tItem.our_total_goals}</span>
-          </div>
-          <div style="font-weight:900; color:var(--text-muted); font-size:0.8rem;">VS</div>
-          <div class="t-team">
-            <span class="t-team-name">${escapeHTML(tItem.opponent_league)}</span>
-            <span class="t-score">${tItem.opponent_total_goals}</span>
-          </div>
+      <div style="cursor: pointer; padding: 5px;" onclick="openTournamentModal('${tItem.tournament_id}')">
+        <div style="display: flex; justify-content: space-between; align-items: center; font-family: var(--font-formal);">
+          <div style="font-size: 1.5rem; font-weight: bold;">Братва</div>
+          <div style="font-size: 2rem;">${tItem.our_total_goals}</div>
+        </div>
+        <div style="text-align: center; font-family: var(--font-hand); color: var(--pencil-light);">VS</div>
+        <div style="display: flex; justify-content: space-between; align-items: center; font-family: var(--font-formal);">
+          <div style="font-size: 1.2rem; max-width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHTML(tItem.opponent_league)}</div>
+          <div style="font-size: 1.8rem;">${tItem.opponent_total_goals}</div>
         </div>
 
-        <!-- Broadcast Goal Gauge Progress Bar -->
-        <div class="goal-gauge-wrap" title="Goal Share Split">
-          <div class="goal-gauge-our" style="width: ${ourPct}%;"></div>
-          <div class="goal-gauge-opp" style="width: ${oppPct}%;"></div>
+        <!-- Scribble Gauge -->
+        <div class="gauge-wrap">
+          <div class="gauge-fill" style="width: ${ourPct}%;"></div>
+          <div class="gauge-fill-opp" style="width: ${oppPct}%;"></div>
         </div>
 
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
-          <span class="tag-badge ${badgeClass}">${tItem.result ? tItem.result.toUpperCase() : 'IN PROGRESS'}</span>
-          <span style="font-size:0.7rem; color:var(--text-muted);">${tItem.date}</span>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 15px;">
+          <span class="stamp ${stampClass}">${tItem.result ? tItem.result : 'In Progress'}</span>
+          <span class="hand-text" style="color:var(--pencil-light);">${tItem.date}</span>
         </div>
       </div>
     `;
 
-    // Render TOTW (Team of the Tournament Spotlight)
     renderTOTW(tItem);
   }
 
@@ -357,11 +373,13 @@ function renderDashboard() {
   const top3 = sortedPlayers.slice(0, 3);
 
   topTbody.innerHTML = top3.map((p, idx) => `
-    <tr class="data-row" onclick="openPlayerModal('${p.player_id}')">
-      <td class="rank-cell rank-${idx + 1}">${idx + 1}</td>
-      <td><strong>${escapeHTML(p.display_name)}</strong></td>
-      <td style="text-align:right; font-weight:800; color:var(--gx-red);">${getPlayerGoals(p)}</td>
-      <td style="text-align:right; color:var(--text-muted);">${p.matches ? p.matches.length : 0}</td>
+    <tr class="sketch-row" onclick="openPlayerModal('${p.player_id}')">
+      <td style="font-family: var(--font-formal); font-weight: bold;">
+        ${idx === 0 ? '<span class="rank-highlight">#1</span>' : `#${idx + 1}`}
+      </td>
+      <td class="username">${escapeHTML(p.display_name)}</td>
+      <td style="text-align:right; font-weight:bold; font-family: var(--font-formal); color: var(--pencil-blue);">${getPlayerGoals(p)}</td>
+      <td style="text-align:right; color:var(--pencil-light);">${p.matches ? p.matches.length : 0}</td>
     </tr>
   `).join('');
 
@@ -373,9 +391,9 @@ function renderDashboard() {
   if (flagged.length > 0) {
     flaggedBox.style.display = 'block';
     flaggedList.innerHTML = flagged.map(p => `
-      <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05); cursor:pointer;" onclick="openPlayerModal('${p.player_id}')">
-        <span style="font-weight:700;">${escapeHTML(p.display_name)}</span>
-        <span class="tag-badge t-badge-loss">${p.eligibility_streak.current_fail_streak} FAILS</span>
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:5px 0; border-bottom:1px dashed var(--pencil-red); cursor:pointer;" onclick="openPlayerModal('${p.player_id}')">
+        <span class="username">${escapeHTML(p.display_name)}</span>
+        <span class="hand-text" style="color: var(--pencil-red); font-weight: bold;">${p.eligibility_streak.current_fail_streak} FAILS!</span>
       </div>
     `).join('');
   } else {
@@ -383,7 +401,6 @@ function renderDashboard() {
   }
 }
 
-// Render Team of the Tournament Spotlight Banner
 function renderTOTW(recentTournament) {
   const totwBox = document.getElementById('totw-container');
   if (!recentTournament || !recentTournament.matches || recentTournament.matches.length === 0) {
@@ -392,15 +409,13 @@ function renderTOTW(recentTournament) {
   }
 
   document.getElementById('totw-card-box').style.display = 'block';
-
-  // Sort match entries by goals descending
   const sorted = [...recentTournament.matches].sort((a, b) => b.goals_for - a.goals_for).slice(0, 3);
 
   totwBox.innerHTML = sorted.map((m, idx) => `
-    <div class="totw-card" onclick="openPlayerModal('${m.player_id}')">
-      <div class="totw-badge">${idx === 0 ? '👑 MVP' : `#${idx + 1} TOP`}</div>
-      <div class="totw-name">${escapeHTML(m.player_display_name || m.player_id)}</div>
-      <div class="totw-score">${m.goals_for} G</div>
+    <div style="text-align: center; cursor: pointer;" onclick="openPlayerModal('${m.player_id}')">
+      <div class="hand-text" style="color: var(--pencil-gold);">${idx === 0 ? '⭐ #1' : `#${idx+1}`}</div>
+      <div class="username" style="font-size: 1rem; max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHTML(m.player_display_name || m.player_id)}</div>
+      <div style="font-family: var(--font-formal); font-weight: bold;">${m.goals_for}</div>
     </div>
   `).join('');
 }
@@ -408,34 +423,20 @@ function renderTOTW(recentTournament) {
 function renderTournaments() {
   const container = document.getElementById('tournaments-list-container');
   container.innerHTML = state.tournaments.map(tItem => {
-    const badgeClass = tItem.result === 'win' ? 't-badge-win' : tItem.result === 'loss' ? 't-badge-loss' : 't-badge-draw';
-    
-    const totalGoals = (tItem.our_total_goals || 0) + (tItem.opponent_total_goals || 0);
-    const ourPct = totalGoals > 0 ? ((tItem.our_total_goals / totalGoals) * 100).toFixed(1) : 50;
-    const oppPct = totalGoals > 0 ? ((tItem.opponent_total_goals / totalGoals) * 100).toFixed(1) : 50;
-
+    const stampClass = tItem.result === 'win' ? 'stamp-win' : tItem.result === 'loss' ? 'stamp-loss' : 'stamp-draw';
     return `
-      <div class="t-card pulse-hover" style="margin-bottom:12px;" onclick="openTournamentModal('${tItem.tournament_id}')">
-        <div class="t-banner">
-          <div class="t-team">
-            <span class="t-team-name">Братва</span>
-            <span class="t-score">${tItem.our_total_goals}</span>
-          </div>
-          <div style="font-weight:900; color:var(--text-muted); font-size:0.8rem;">VS</div>
-          <div class="t-team">
-            <span class="t-team-name">${escapeHTML(tItem.opponent_league)}</span>
-            <span class="t-score">${tItem.opponent_total_goals}</span>
-          </div>
+      <div style="border-bottom: 2px dashed var(--pencil-light); margin-bottom: 15px; padding-bottom: 10px; cursor: pointer;" onclick="openTournamentModal('${tItem.tournament_id}')">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+          <span class="hand-text" style="color: var(--pencil-light);">${tItem.date}</span>
+          <span class="hand-text" style="color: var(--pencil-light);">${tItem.format || '32v32'}</span>
         </div>
-
-        <div class="goal-gauge-wrap">
-          <div class="goal-gauge-our" style="width: ${ourPct}%;"></div>
-          <div class="goal-gauge-opp" style="width: ${oppPct}%;"></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; font-family: var(--font-formal);">
+          <div style="font-size: 1.2rem; font-weight: bold;">Братва ${tItem.our_total_goals}</div>
+          <div style="font-family: var(--font-hand); color: var(--pencil-light);">VS</div>
+          <div style="font-size: 1.1rem;">${tItem.opponent_total_goals} ${escapeHTML(tItem.opponent_league)}</div>
         </div>
-
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
-          <span class="tag-badge ${badgeClass}">${tItem.result ? tItem.result.toUpperCase() : 'IN PROGRESS'}</span>
-          <span style="font-size:0.7rem; color:var(--text-muted);">${tItem.date} • ${tItem.format || '32v32'}</span>
+        <div style="margin-top: 10px;">
+          <span class="stamp ${stampClass}" style="font-size: 0.8rem; padding: 1px 5px;">${tItem.result || 'In Progress'}</span>
         </div>
       </div>
     `;
@@ -456,25 +457,24 @@ function renderRoster() {
   if (state.searchQuery) {
     list = list.filter(p => p.display_name.toLowerCase().includes(state.searchQuery));
   }
-
   list.sort((a, b) => a.display_name.localeCompare(b.display_name));
 
   tbody.innerHTML = list.map(p => `
-    <tr class="data-row" onclick="openPlayerModal('${p.player_id}')">
-      <td>
-        <strong>${escapeHTML(p.display_name)}</strong>
-        ${p.eligibility_streak?.flagged_for_review ? ' <span class="tag-badge t-badge-loss">FLAGGED</span>' : ''}
+    <tr class="sketch-row" onclick="openPlayerModal('${p.player_id}')">
+      <td class="username">
+        ${escapeHTML(p.display_name)}
+        ${p.eligibility_streak?.flagged_for_review ? ' <span class="stamp stamp-loss" style="font-size:0.6rem;">FLAG</span>' : ''}
       </td>
-      <td style="text-align:center; color:var(--text-sub);">${p.matches ? p.matches.length : 0}</td>
-      <td style="text-align:right; font-weight:800; color:var(--gx-red);">${getPlayerGoals(p)}</td>
+      <td style="text-align:center; font-family: var(--font-hand);">${p.matches ? p.matches.length : 0}</td>
+      <td style="text-align:right; font-family: var(--font-formal); font-weight:bold;">${getPlayerGoals(p)}</td>
     </tr>
   `).join('');
 }
 
 function setupFilterControls() {
-  document.querySelectorAll('.filter-bar .btn-filter').forEach(btn => {
+  document.querySelectorAll('[data-window]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-bar .btn-filter').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('[data-window]').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       state.leaderboardWindow = btn.dataset.window;
       renderLeaderboard();
@@ -498,96 +498,98 @@ function renderLeaderboard() {
       });
     }
     if (windowDays !== 'all' && matches.length === 0) return null;
-
     const goals = matches.reduce((sum, m) => sum + (m.goals_for || 0), 0);
     const avg = matches.length > 0 ? (goals / matches.length).toFixed(1) : '0.0';
-
-    return { player_id: p.player_id, display_name: p.display_name, goals, matchesCount: matches.length, avg };
+    return { player_id: p.player_id, display_name: p.display_name, goals, avg };
   }).filter(Boolean);
 
   list.sort((a, b) => b.goals - a.goals);
 
   tbody.innerHTML = list.map((item, idx) => `
-    <tr class="data-row" onclick="openPlayerModal('${item.player_id}')">
-      <td class="rank-cell rank-${idx + 1}">${idx + 1}</td>
-      <td><strong>${escapeHTML(item.display_name)}</strong></td>
-      <td style="text-align:right; font-weight:800; color:var(--gx-red);">${item.goals}</td>
-      <td style="text-align:right; color:var(--text-sub);">${item.avg}</td>
+    <tr class="sketch-row" onclick="openPlayerModal('${item.player_id}')">
+      <td style="font-family: var(--font-formal); font-weight: bold;">
+        ${idx === 0 ? '<span class="rank-highlight">#1</span>' : `#${idx + 1}`}
+      </td>
+      <td class="username">${escapeHTML(item.display_name)}</td>
+      <td style="text-align:right; font-family: var(--font-formal); font-weight:bold; color: var(--pencil-blue);">${item.goals}</td>
+      <td style="text-align:right; font-family: var(--font-hand); color:var(--pencil-light);">${item.avg}</td>
     </tr>
   `).join('');
 }
 
-// --- Player Detail Modal & 7-Day SVG Performance Chart ---
+// --- Player Detail Modal ---
 function openPlayerModal(playerId) {
   const player = state.players.find(p => p.player_id === playerId);
   if (!player) return;
 
-  const backdrop = document.getElementById('player-modal');
+  const overlay = document.getElementById('player-modal');
   const content = document.getElementById('modal-player-content');
+  const page = document.getElementById('modal-page');
 
-  document.getElementById('modal-close-x').onclick = () => backdrop.style.display = 'none';
-  backdrop.onclick = (e) => { if (e.target === backdrop) backdrop.style.display = 'none'; };
+  document.getElementById('modal-close-x').onclick = () => overlay.style.display = 'none';
+  overlay.onclick = (e) => { if (e.target === overlay) overlay.style.display = 'none'; };
 
   const streak = player.eligibility_streak?.current_fail_streak || 0;
   const isFlagged = player.eligibility_streak?.flagged_for_review;
 
-  let eligHTML = `<div class="tag-badge t-badge-win" style="margin-bottom:12px; width:100%; text-align:center;">${t('eligibility_ok')}</div>`;
+  let eligHTML = `<span class="hand-text" style="color: var(--pencil-green);">${t('eligibility_ok')}</span>`;
   if (isFlagged) {
-    eligHTML = `<div class="tag-badge t-badge-loss" style="margin-bottom:12px; width:100%; text-align:center;">${t('eligibility_flagged')}</div>`;
+    eligHTML = `<span class="hand-text" style="color: var(--pencil-red); font-weight: bold;">${t('eligibility_flagged')}</span>`;
   } else if (streak > 0) {
-    eligHTML = `<div class="tag-badge t-badge-draw" style="margin-bottom:12px; width:100%; text-align:center;">${t('eligibility_warn', { n: streak })}</div>`;
+    eligHTML = `<span class="hand-text" style="color: var(--pencil-gold);">${t('eligibility_warn', { n: streak })}</span>`;
   }
 
   const chartData = build7DayPerformanceData(player);
 
   content.innerHTML = `
-    <div style="font-family:var(--font-display); font-size:1.4rem; font-weight:900; margin-bottom:4px;">${escapeHTML(player.display_name)}</div>
-    ${eligHTML}
+    <div style="border-bottom: 2px solid var(--pencil-main); padding-bottom: 5px; margin-bottom: 15px;">
+      <div class="username" style="font-size: 1.8rem; line-height: 1.2;">${escapeHTML(player.display_name)}</div>
+      <div>${eligHTML}</div>
+    </div>
 
-    <div class="card-title-sm" style="margin:12px 0 6px;">
-      <svg class="icon-svg" viewBox="0 0 24 24"><path d="M23 6l-9.5 9.5-5-5L1 18"/></svg>
+    <div class="card-title">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-5 5"/></svg>
       ${t('performance_chart')}
     </div>
-    <div style="font-size:0.65rem; color:var(--text-muted); margin-bottom:8px;">${t('click_point_hint')}</div>
-
-    <!-- Chart Container -->
-    <div class="chart-container">
-      <div id="chart-tooltip" class="chart-tooltip" style="display:none;"></div>
-      ${renderSVGPerformanceChart(chartData)}
+    
+    <div class="chart-wrap">
+      ${renderSketchyChart(chartData)}
     </div>
 
-    <!-- Active Point Summary Card -->
-    <div id="chart-point-summary" class="hero-metric" style="margin-bottom:14px; text-align:left; padding:10px;">
-      <div style="font-size:0.7rem; color:var(--text-muted);" id="summary-date-label">Tap any point above for details</div>
-      <div style="font-weight:800; font-size:0.9rem; margin-top:2px;" id="summary-verdict-label">-</div>
+    <div id="chart-point-summary" style="background: rgba(255,255,255,0.6); padding: 10px; border: 1px dashed var(--pencil-light); border-radius: 4px; margin-bottom: 20px;">
+      <div class="hand-text" id="summary-date-label" style="color: var(--pencil-light);">${t('click_point_hint')}</div>
+      <div class="username" id="summary-verdict-label" style="font-size: 1.1rem;">-</div>
     </div>
 
-    <div class="card-title-sm">${t('tournament_history')}</div>
-    <div style="max-height:160px; overflow-y:auto;">
+    <div class="card-title">${t('tournament_history')}</div>
+    <div>
       ${(player.matches || []).map(m => `
-        <div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.05); font-size:0.78rem;">
-          <span>vs ${escapeHTML(m.opponent_display_name)}</span>
-          <span style="font-weight:800; color:var(--gx-red);">${m.goals_for} Goals (${m.turns_played || 3}/3 turns)</span>
+        <div style="display:flex; justify-content:space-between; border-bottom: 1px dashed var(--pencil-light); padding: 5px 0;">
+          <span class="hand-text">vs ${escapeHTML(m.opponent_display_name)}</span>
+          <span class="hand-text" style="font-weight:bold;">${m.goals_for} G (${m.turns_played || 3}/3)</span>
         </div>
       `).join('')}
     </div>
   `;
 
-  backdrop.style.display = 'flex';
+  overlay.style.display = 'flex';
+  
+  // Randomize rotation slightly for notebook feel
+  const randRot = (Math.random() * 2 - 1).toFixed(1);
+  page.style.transform = `rotate(${randRot}deg)`;
+
   attachChartPointListeners(chartData);
 }
 
 function build7DayPerformanceData(player) {
   const days = [];
   const now = new Date();
-
   for (let i = 6; i >= 0; i--) {
     const d = new Date();
     d.setDate(now.getDate() - i);
     const dateStr = d.toISOString().split('T')[0];
     days.push({ dateStr, dayLabel: d.toLocaleDateString(state.lang, { weekday: 'short' }), match: null, status: 'no_tournament' });
   }
-
   (player.matches || []).forEach(m => {
     const tInfo = state.tournamentsIndex[m.tournament_id];
     const matchDate = tInfo ? tInfo.date : null;
@@ -598,95 +600,61 @@ function build7DayPerformanceData(player) {
         dayObj.tournament = tInfo;
         const goals = m.goals_for || 0;
         const turns = m.turns_played || 3;
-        if (turns === 3 && goals >= 20) {
-          dayObj.status = 'great';
-        } else if (turns === 0) {
-          dayObj.status = 'absent';
-        } else {
-          dayObj.status = 'bad';
-        }
+        if (turns === 3 && goals >= 20) dayObj.status = 'great';
+        else if (turns === 0) dayObj.status = 'absent';
+        else dayObj.status = 'bad';
       }
     }
   });
-
   return days;
 }
 
-function renderSVGPerformanceChart(daysData) {
-  const svgWidth = 320;
-  const svgHeight = 130;
-  const paddingX = 25;
-  const paddingY = 20;
+function renderSketchyChart(daysData) {
+  const w = 320, h = 140, px = 20, py = 20;
+  const step = (w - px * 2) / (daysData.length - 1);
+  const getY = (goals) => h - py - (Math.min(Math.max(goals, 0), 40) / 40) * (h - py * 2);
 
-  const stepX = (svgWidth - paddingX * 2) / (daysData.length - 1);
-
-  const getY = (goals) => {
-    const maxG = 40;
-    const g = Math.min(Math.max(goals, 0), maxG);
-    return svgHeight - paddingY - (g / maxG) * (svgHeight - paddingY * 2);
-  };
-
-  const points = daysData.map((d, i) => {
-    const x = paddingX + i * stepX;
-    const goals = d.match ? d.match.goals_for || 0 : 0;
-    const y = getY(goals);
-    return { x, y, goals, data: d };
-  });
-
+  const points = daysData.map((d, i) => ({ x: px + i * step, y: getY(d.match ? (d.match.goals_for||0) : 0), data: d }));
   const pathD = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
-  const areaD = `${pathD} L ${points[points.length - 1].x} ${svgHeight - paddingY} L ${points[0].x} ${svgHeight - paddingY} Z`;
 
   return `
-    <svg class="chart-svg" viewBox="0 0 ${svgWidth} ${svgHeight}">
-      <defs>
-        <linearGradient id="redGradient" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#ff0038" stop-opacity="0.4"/>
-          <stop offset="100%" stop-color="#ff0038" stop-opacity="0.0"/>
-        </linearGradient>
-      </defs>
-
-      <line x1="${paddingX}" y1="${svgHeight - paddingY}" x2="${svgWidth - paddingX}" y2="${svgHeight - paddingY}" class="chart-axis-line" />
-      <path d="${areaD}" class="chart-area" />
-      <path d="${pathD}" class="chart-path" />
-
-      ${points.map((p, i) => {
-        let ptClass = 'point-none';
-        if (p.data.status === 'great') ptClass = 'point-great';
-        if (p.data.status === 'bad') ptClass = 'point-bad';
-        return `
-          <circle cx="${p.x}" cy="${p.y}" class="chart-point ${ptClass}" data-index="${i}" />
-          <text x="${p.x}" y="${svgHeight - 4}" font-size="8" fill="#666677" text-anchor="middle">${p.data.dayLabel}</text>
-        `;
-      }).join('')}
+    <svg viewBox="0 0 ${w} ${h}" style="width:100%; height:100%;">
+      <!-- X Axis -->
+      <line x1="${px}" y1="${h-py}" x2="${w-px}" y2="${h-py}" class="chart-axis"/>
+      <!-- The squiggly line -->
+      <path d="${pathD}" class="sketch-line"/>
+      <!-- Data points -->
+      ${points.map((p, i) => `
+        <circle cx="${p.x}" cy="${p.y}" class="sketch-point" data-index="${i}" 
+                style="${p.data.status==='absent' ? 'fill:var(--pencil-red);' : ''}" />
+        <text x="${p.x}" y="${h-4}" class="hand-text" font-size="10" fill="var(--pencil-main)" text-anchor="middle">${p.data.dayLabel}</text>
+      `).join('')}
     </svg>
   `;
 }
 
 function attachChartPointListeners(daysData) {
-  const points = document.querySelectorAll('.chart-point');
+  const points = document.querySelectorAll('.sketch-point');
   const summaryDate = document.getElementById('summary-date-label');
   const summaryVerdict = document.getElementById('summary-verdict-label');
 
   points.forEach(pt => {
     pt.addEventListener('click', () => {
-      const idx = parseInt(pt.dataset.index, 10);
-      const d = daysData[idx];
-
+      const d = daysData[parseInt(pt.dataset.index, 10)];
       summaryDate.textContent = `${d.dateStr} (${d.dayLabel})`;
-
       if (d.status === 'no_tournament') {
-        summaryVerdict.innerHTML = `<span style="color:var(--text-muted);">${t('verdict_no_tournament')}</span>`;
+        summaryVerdict.innerHTML = `<span style="color:var(--pencil-light);">${t('verdict_no_tournament')}</span>`;
       } else if (d.status === 'absent') {
-        summaryVerdict.innerHTML = `<span class="text-loss">${t('verdict_absent')}</span>`;
+        summaryVerdict.innerHTML = `<span style="color:var(--pencil-red);">${t('verdict_absent')}</span>`;
       } else if (d.status === 'great') {
         summaryVerdict.innerHTML = `
-          <span class="text-win">${t('verdict_excellent')} (${d.match.goals_for} Goals)</span>
-          <div style="font-size:0.75rem; color:var(--text-sub); margin-top:2px;">vs ${escapeHTML(d.match.opponent_display_name)} • ${d.match.turns_played || 3}/3 ${t('turns_completed')}</div>
+          <span style="color:var(--pencil-green);">${t('verdict_excellent')} (${d.match.goals_for}G)</span>
+          <div class="hand-text" style="font-size:0.9rem; margin-top:2px;">vs ${escapeHTML(d.match.opponent_display_name)} • ${d.match.turns_played||3}/3 ${t('turns_completed')}</div>
         `;
       } else {
         summaryVerdict.innerHTML = `
-          <span class="text-loss">${t('verdict_underperformed')} (${d.match.goals_for} Goals)</span>
-          <div style="font-size:0.75rem; color:var(--text-sub); margin-top:2px;">vs ${escapeHTML(d.match.opponent_display_name)} • ${d.match.turns_played || 0}/3 ${t('turns_completed')}</div>
+          <span style="color:var(--pencil-red);">${t('verdict_underperformed')} (${d.match.goals_for}G)</span>
+          <div class="hand-text" style="font-size:0.9rem; margin-top:2px;">vs ${escapeHTML(d.match.opponent_display_name)} • ${d.match.turns_played||0}/3 ${t('turns_completed')}</div>
         `;
       }
     });
@@ -697,42 +665,45 @@ function openTournamentModal(tId) {
   const tItem = state.tournaments.find(t => t.tournament_id === tId);
   if (!tItem) return;
 
-  const backdrop = document.getElementById('player-modal');
+  const overlay = document.getElementById('player-modal');
   const content = document.getElementById('modal-player-content');
-
-  document.getElementById('modal-close-x').onclick = () => backdrop.style.display = 'none';
-  backdrop.onclick = (e) => { if (e.target === backdrop) backdrop.style.display = 'none'; };
+  
+  document.getElementById('modal-close-x').onclick = () => overlay.style.display = 'none';
+  overlay.onclick = (e) => { if (e.target === overlay) overlay.style.display = 'none'; };
 
   const matches = [...(tItem.matches || [])].sort((a, b) => b.goals_for - a.goals_for);
 
   content.innerHTML = `
-    <div style="font-family:var(--font-display); font-size:1.3rem; font-weight:900;">vs ${escapeHTML(tItem.opponent_league)}</div>
-    <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:12px;">${tItem.date} • ${tItem.format || '32v32'}</div>
+    <div style="border-bottom: 2px solid var(--pencil-main); padding-bottom: 10px; margin-bottom: 15px;">
+      <div class="username" style="font-size: 1.5rem;">vs ${escapeHTML(tItem.opponent_league)}</div>
+      <div class="hand-text" style="color: var(--pencil-light);">${tItem.date} • ${tItem.format || '32v32'}</div>
+    </div>
 
-    <div class="t-banner" style="margin-bottom:16px;">
-      <div class="t-team">
-        <span class="t-team-name">Братва</span>
-        <span class="t-score">${tItem.our_total_goals}</span>
+    <div style="display: flex; justify-content: space-around; align-items: center; margin-bottom: 20px;">
+      <div style="text-align:center;">
+        <div class="username">Братва</div>
+        <div style="font-size: 2rem; font-family: var(--font-formal); font-weight: bold;">${tItem.our_total_goals}</div>
       </div>
-      <div style="font-weight:900; color:var(--text-muted);">VS</div>
-      <div class="t-team">
-        <span class="t-team-name">${escapeHTML(tItem.opponent_league)}</span>
-        <span class="t-score">${tItem.opponent_total_goals}</span>
+      <div class="hand-text">VS</div>
+      <div style="text-align:center;">
+        <div class="username" style="max-width:80px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeHTML(tItem.opponent_league)}</div>
+        <div style="font-size: 2rem; font-family: var(--font-formal); font-weight: bold;">${tItem.opponent_total_goals}</div>
       </div>
     </div>
 
-    <div class="card-title-sm">${t('player')} Scores (${matches.length})</div>
-    <div style="max-height:220px; overflow-y:auto;">
+    <div class="card-title">${t('player')} Scores</div>
+    <div>
       ${matches.map(m => `
-        <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.05); font-size:0.8rem; cursor:pointer;" onclick="openPlayerModal('${m.player_id}')">
-          <span><strong>${escapeHTML(m.player_display_name || m.player_id)}</strong> (${m.turns_played || 3}/3 turns)</span>
-          <span style="font-weight:800; color:var(--gx-red);">${m.goals_for} G</span>
+        <div class="sketch-row" style="display:flex; justify-content:space-between; border-bottom: 1px dashed var(--pencil-light); padding: 5px 0;" onclick="openPlayerModal('${m.player_id}')">
+          <span class="username">${escapeHTML(m.player_display_name || m.player_id)} <span class="hand-text" style="font-size:0.8rem; font-weight:normal;">(${m.turns_played || 3}/3)</span></span>
+          <span class="hand-text" style="font-weight:bold;">${m.goals_for} G</span>
         </div>
       `).join('')}
     </div>
   `;
 
-  backdrop.style.display = 'flex';
+  overlay.style.display = 'flex';
+  document.getElementById('modal-page').style.transform = `rotate(${(Math.random()*2-1).toFixed(1)}deg)`;
 }
 
 function getPlayerGoals(player) {
