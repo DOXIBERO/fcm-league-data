@@ -38,11 +38,23 @@
       "turns_played": 3,
       "player_display_name": "K8N",
       "player_id": "k8n"
+    },
+    {
+      "tournament_id": "2026-08-14_sudamericana",
+      "match_index_in_tournament": 13,
+      "opponent_display_name": "SUDAMERICANA",
+      "opponent_id": "sudamericana",
+      "goals_for": 38,
+      "goals_against": 0,
+      "result": "win",
+      "turns_played": 3,
+      "player_display_name": "K8N",
+      "player_id": "k8n"
     }
   ],
   "eligibility_streak": {
     "current_fail_streak": 0,
-    "last_evaluated_tournament_id": "2026-08-12_warga",
+    "last_evaluated_tournament_id": "2026-08-14_sudamericana",
     "flagged_for_review": false
   },
   "average_goals": 29.5

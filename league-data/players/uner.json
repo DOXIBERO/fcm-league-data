@@ -1,0 +1,24 @@
+{
+  "player_id": "uner",
+  "display_name": "ţħuner",
+  "known_aliases": [],
+  "matches": [
+    {
+      "tournament_id": "2026-08-14_sudamericana",
+      "match_index_in_tournament": 15,
+      "opponent_display_name": "SUDAMERICANA",
+      "opponent_id": "sudamericana",
+      "goals_for": 0,
+      "goals_against": 0,
+      "result": "draw",
+      "turns_played": 0,
+      "player_display_name": "ţħuner",
+      "player_id": "uner"
+    }
+  ],
+  "eligibility_streak": {
+    "current_fail_streak": 1,
+    "last_evaluated_tournament_id": "2026-08-14_sudamericana",
+    "flagged_for_review": false
+  }
+}

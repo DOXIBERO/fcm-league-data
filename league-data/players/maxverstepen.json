@@ -26,11 +26,23 @@
       "turns_played": 3,
       "player_display_name": "MaxVerstepen",
       "player_id": "maxverstepen"
+    },
+    {
+      "tournament_id": "2026-08-14_sudamericana",
+      "match_index_in_tournament": 2,
+      "opponent_display_name": "SUDAMERICANA",
+      "opponent_id": "sudamericana",
+      "goals_for": 0,
+      "goals_against": 0,
+      "result": "draw",
+      "turns_played": 0,
+      "player_display_name": "MaxVerstepen",
+      "player_id": "maxverstepen"
     }
   ],
   "eligibility_streak": {
-    "current_fail_streak": 0,
-    "last_evaluated_tournament_id": "2026-08-12_warga",
+    "current_fail_streak": 1,
+    "last_evaluated_tournament_id": "2026-08-14_sudamericana",
     "flagged_for_review": false
   },
   "average_goals": 34

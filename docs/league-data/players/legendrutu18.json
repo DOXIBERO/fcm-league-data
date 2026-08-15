@@ -28,7 +28,7 @@
       "player_id": "legendrutu18"
     },
     {
-      "tournament_id": "2026-08-13_arabs-team",
+      "tournament_id": "2026-08-12_arabs-team",
       "match_index_in_tournament": 13,
       "opponent_display_name": "ARAB'S TEAM",
       "opponent_id": "arabs-team",
@@ -40,7 +40,7 @@
       "player_id": "legendrutu18"
     },
     {
-      "tournament_id": "2026-08-14_free-palestine",
+      "tournament_id": "2026-08-13_free-palestine",
       "match_index_in_tournament": 12,
       "opponent_display_name": "FREE PALESTINE",
       "opponent_id": "free-palestine",
@@ -54,7 +54,7 @@
   ],
   "eligibility_streak": {
     "current_fail_streak": 1,
-    "last_evaluated_tournament_id": "2026-08-14_free-palestine",
+    "last_evaluated_tournament_id": "2026-08-13_free-palestine",
     "flagged_for_review": false
   },
   "average_goals": 18

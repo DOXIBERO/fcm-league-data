@@ -40,7 +40,7 @@
       "player_id": "venusviper"
     },
     {
-      "tournament_id": "2026-08-13_arabs-team",
+      "tournament_id": "2026-08-12_arabs-team",
       "match_index_in_tournament": 5,
       "opponent_display_name": "ARAB'S TEAM",
       "opponent_id": "arabs-team",
@@ -50,11 +50,23 @@
       "turns_played": 3,
       "player_display_name": "Venusviper",
       "player_id": "venusviper"
+    },
+    {
+      "tournament_id": "2026-08-14_sudamericana",
+      "match_index_in_tournament": 18,
+      "opponent_display_name": "SUDAMERICANA",
+      "opponent_id": "sudamericana",
+      "goals_for": 32,
+      "goals_against": 0,
+      "result": "win",
+      "turns_played": 3,
+      "player_display_name": "Venusviper",
+      "player_id": "venusviper"
     }
   ],
   "eligibility_streak": {
     "current_fail_streak": 0,
-    "last_evaluated_tournament_id": "2026-08-13_arabs-team",
+    "last_evaluated_tournament_id": "2026-08-14_sudamericana",
     "flagged_for_review": false
   },
   "average_goals": 16

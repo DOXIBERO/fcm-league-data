@@ -11,22 +11,28 @@
     "status": "complete",
     "result": "win"
   },
+  "2026-08-12_arabs-team": {
+    "date": "2026-08-13",
+    "opponent_league": "ARAB'S TEAM",
+    "status": "complete",
+    "result": "win"
+  },
   "2026-08-12_warga": {
     "date": "2026-08-12",
     "opponent_league": "Warga +82™",
     "status": "complete",
     "result": "loss"
   },
-  "2026-08-13_arabs-team": {
-    "date": "2026-08-13",
-    "opponent_league": "ARAB'S TEAM",
-    "status": "complete",
-    "result": "win"
-  },
-  "2026-08-14_free-palestine": {
+  "2026-08-13_free-palestine": {
     "date": "2026-08-14",
     "opponent_league": "FREE PALESTINE",
     "status": "complete",
     "result": "loss"
+  },
+  "2026-08-14_sudamericana": {
+    "date": "2026-08-14",
+    "opponent_league": "SUDAMERICANA",
+    "status": "complete",
+    "result": "win"
   }
 }
