@@ -2,6 +2,28 @@ import { readdirSync } from 'fs';
 import path from 'path';
 import { PLAYERS_DIR, TOURNAMENTS_DIR, INDEX_DIR, readJSON, writeJSON } from './utils.js';
 
+import { copyFileSync, mkdirSync, existsSync, statSync } from 'fs';
+
+function syncToDocs(src = PLAYERS_DIR ? path.dirname(PLAYERS_DIR) : 'league-data', dest = 'docs/league-data') {
+  try {
+    const copyDir = (s, d) => {
+      mkdirSync(d, { recursive: true });
+      for (const entry of readdirSync(s)) {
+        const srcPath = path.join(s, entry);
+        const destPath = path.join(d, entry);
+        if (statSync(srcPath).isDirectory()) {
+          copyDir(srcPath, destPath);
+        } else {
+          copyFileSync(srcPath, destPath);
+        }
+      }
+    };
+    copyDir(src, dest);
+  } catch (e) {
+    // ignore sync errors if docs folder doesn't exist
+  }
+}
+
 /**
  * Regenerate players_index.json from all player files.
  * The index maps player_id -> { display_name, known_aliases }
@@ -26,6 +48,7 @@ export function regeneratePlayersIndex() {
     }
     
     writeJSON(path.join(INDEX_DIR, 'players_index.json'), index);
+    syncToDocs();
     return true;
   } catch (error) {
     console.error('Error regenerating players index:', error);
@@ -59,6 +82,7 @@ export function regenerateTournamentsIndex() {
     }
     
     writeJSON(path.join(INDEX_DIR, 'tournaments_index.json'), index);
+    syncToDocs();
     return true;
   } catch (error) {
     console.error('Error regenerating tournaments index:', error);

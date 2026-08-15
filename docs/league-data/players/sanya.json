@@ -1,0 +1,26 @@
+{
+  "player_id": "sanya",
+  "display_name": "саня",
+  "known_aliases": [],
+  "matches": [
+    {
+      "tournament_id": "2026-08-09_abtal-al-arab",
+      "match_index_in_tournament": null,
+      "opponent_display_name": "ابطال العرب",
+      "goals_for": 31,
+      "goals_against": null,
+      "result": null,
+      "source_screenshot": "batch_import",
+      "extracted_at": "2026-08-15T14:33:26Z",
+      "player_id": "sanya",
+      "player_display_name": "саня",
+      "is_aggregate": true,
+      "turns_played": 3
+    }
+  ],
+  "eligibility_streak": {
+    "current_fail_streak": 0,
+    "last_evaluated_tournament_id": "2026-08-09_abtal-al-arab",
+    "flagged_for_review": false
+  }
+}

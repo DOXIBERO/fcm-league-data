@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Братва — FC Mobile League Tracker</title>
+  <meta name="description" content="Premium stats tracker for Братва FC Mobile League. View tournament results, player performance, and leaderboards.">
+  <meta name="theme-color" content="#0a0a1a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient background glow -->
+  <div class="ambient-glow"></div>
+  <div class="ambient-glow-2"></div>
+
+  <!-- App Container -->
+  <div id="app">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="league-brand">
+        <div class="league-icon">👑</div>
+        <div class="league-info">
+          <h1 class="league-name">Братва</h1>
+          <span class="league-subtitle">FC Mobile League</span>
+        </div>
+      </div>
+      <div class="header-record" id="header-record">
+        <span class="record-loading">Loading...</span>
+      </div>
+    </header>
+
+    <!-- Page Content (swapped by tab navigation) -->
+    <main class="page-content" id="page-content">
+
+      <!-- ===== DASHBOARD TAB ===== -->
+      <section class="tab-page active" id="tab-dashboard">
+        <!-- League Record Card -->
+        <div class="card card-hero" id="league-record-card">
+          <div class="card-shimmer"></div>
+          <div class="hero-label">League Record</div>
+          <div class="hero-stats" id="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-number" id="hero-wins">-</span>
+              <span class="hero-label-sm">Wins</span>
+            </div>
+            <div class="hero-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-number" id="hero-draws">-</span>
+              <span class="hero-label-sm">Draws</span>
+            </div>
+            <div class="hero-divider"></div>
+            <div class="hero-stat">
+              <span class="hero-number" id="hero-losses">-</span>
+              <span class="hero-label-sm">Losses</span>
+            </div>
+          </div>
+          <div class="hero-footer">
+            <span class="hero-gd" id="hero-gd">GD: —</span>
+            <span class="hero-winrate" id="hero-winrate">Win Rate: —</span>
+          </div>
+        </div>
+
+        <!-- Recent Tournament -->
+        <h2 class="section-title">Recent Tournament</h2>
+        <div class="card card-tournament" id="recent-tournament">
+          <div class="card-shimmer"></div>
+          <p class="empty-state">Loading...</p>
+        </div>
+
+        <!-- Top Performers -->
+        <h2 class="section-title">Top Performers <span class="section-badge">All Time</span></h2>
+        <div class="top-performers" id="top-performers">
+          <div class="card"><div class="card-shimmer"></div><p class="empty-state">Loading...</p></div>
+        </div>
+
+        <!-- Flagged Players -->
+        <div id="flagged-section" class="flagged-section" style="display:none">
+          <h2 class="section-title">⚠️ Flagged for Review</h2>
+          <div id="flagged-list" class="flagged-list"></div>
+        </div>
+      </section>
+
+      <!-- ===== TOURNAMENTS TAB ===== -->
+      <section class="tab-page" id="tab-tournaments">
+        <h2 class="section-title">Tournament History</h2>
+        <div id="tournaments-list" class="tournaments-list">
+          <div class="card"><div class="card-shimmer"></div><p class="empty-state">Loading...</p></div>
+        </div>
+      </section>
+
+      <!-- ===== PLAYERS TAB ===== -->
+      <section class="tab-page" id="tab-players">
+        <div class="search-bar">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="player-search" placeholder="Search players..." autocomplete="off">
+        </div>
+        <div id="players-list" class="players-list">
+          <div class="card"><div class="card-shimmer"></div><p class="empty-state">Loading...</p></div>
+        </div>
+      </section>
+
+      <!-- ===== LEADERBOARD TAB ===== -->
+      <section class="tab-page" id="tab-leaderboard">
+        <div class="leaderboard-header">
+          <h2 class="section-title">Leaderboard</h2>
+          <div class="pill-toggle" id="lb-toggle">
+            <button class="pill active" data-window="all">All Time</button>
+            <button class="pill" data-window="7">7 Days</button>
+            <button class="pill" data-window="30">30 Days</button>
+          </div>
+        </div>
+        <div class="leaderboard-sort">
+          <button class="sort-btn active" data-sort="goals">Goals</button>
+          <button class="sort-btn" data-sort="winrate">Win %</button>
+          <button class="sort-btn" data-sort="matches">Matches</button>
+          <button class="sort-btn" data-sort="avg">Avg GF</button>
+        </div>
+        <div id="leaderboard-list" class="leaderboard-list">
+          <div class="card"><div class="card-shimmer"></div><p class="empty-state">Loading...</p></div>
+        </div>
+      </section>
+
+      <!-- ===== PLAYER DETAIL MODAL ===== -->
+      <div class="modal-overlay" id="player-modal" style="display:none">
+        <div class="modal-sheet">
+          <div class="modal-handle"></div>
+          <div class="modal-content" id="player-modal-content"></div>
+        </div>
+      </div>
+
+      <!-- ===== TOURNAMENT DETAIL MODAL ===== -->
+      <div class="modal-overlay" id="tournament-modal" style="display:none">
+        <div class="modal-sheet">
+          <div class="modal-handle"></div>
+          <div class="modal-content" id="tournament-modal-content"></div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Bottom Tab Bar -->
+    <nav class="tab-bar">
+      <button class="tab-btn active" data-tab="dashboard" id="nav-dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        <span>Dashboard</span>
+      </button>
+      <button class="tab-btn" data-tab="tournaments" id="nav-tournaments">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5C7 4 9 7 12 7s5-3 7.5-3a2.5 2.5 0 0 1 0 5H18"/><path d="M18 9v8a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V9"/><path d="M12 7v14"/></svg>
+        <span>Tournaments</span>
+      </button>
+      <button class="tab-btn" data-tab="players" id="nav-players">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Players</span>
+      </button>
+      <button class="tab-btn" data-tab="leaderboard" id="nav-leaderboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+        <span>Leaderboard</span>
+      </button>
+    </nav>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
