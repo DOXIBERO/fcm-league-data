@@ -415,10 +415,16 @@ function renderTournaments() {
           </div>
           <span class="hand-text" style="color: var(--pencil-light); font-size: 0.8rem;">${tItem.format || '32v32'}</span>
         </div>
-        <div style="display: grid; grid-template-columns: 1fr 30px 1fr; align-items: center; font-family: system-ui, -apple-system, sans-serif; font-size: 0.95rem;">
-          <div style="text-align: left; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Братва <span style="font-weight: bold;">${tItem.our_total_goals}</span></div>
-          <div style="text-align: center; font-family: var(--font-hand); color: var(--pencil-light); font-size: 0.8rem;">VS</div>
-          <div style="text-align: right; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span style="font-weight: bold;">${tItem.opponent_total_goals}</span> ${escapeHTML(tItem.opponent_league)}</div>
+        <div style="display: flex; justify-content: space-between; align-items: center; font-family: system-ui, -apple-system, sans-serif;">
+          <div style="flex: 1; text-align: left;">
+            <div style="font-weight: 500; font-size: 0.95rem; line-height: 1.1; margin-bottom: 4px; word-break: break-word;">Братва</div>
+            <div style="font-weight: bold; font-size: 1.1rem;">${tItem.our_total_goals}</div>
+          </div>
+          <div style="width: 30px; text-align: center; font-family: var(--font-hand); color: var(--pencil-light); font-size: 0.8rem;">VS</div>
+          <div style="flex: 1; text-align: right;">
+            <div style="font-weight: 500; font-size: 0.95rem; line-height: 1.1; margin-bottom: 4px; word-break: break-word;">${escapeHTML(tItem.opponent_league)}</div>
+            <div style="font-weight: bold; font-size: 1.1rem;">${tItem.opponent_total_goals}</div>
+          </div>
         </div>
       </div>
     `;

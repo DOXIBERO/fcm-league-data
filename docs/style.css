@@ -152,19 +152,11 @@ body {
 }
 
 .brand-red {
-  color: transparent;
-  -webkit-text-stroke: 1px var(--pencil-red);
-  background: repeating-linear-gradient(45deg, var(--pencil-red), var(--pencil-red) 1px, transparent 1px, transparent 4px);
-  -webkit-background-clip: text;
-  background-clip: text;
+  color: var(--pencil-red);
 }
 
 .brand-blue {
-  color: transparent;
-  -webkit-text-stroke: 1px var(--pencil-blue);
-  background: repeating-linear-gradient(-45deg, var(--pencil-blue), var(--pencil-blue) 1px, transparent 1px, transparent 4px);
-  -webkit-background-clip: text;
-  background-clip: text;
+  color: var(--pencil-blue);
 }
 
 .brand-subtext {
