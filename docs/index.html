@@ -7,42 +7,71 @@
   <meta name="description" content="Official Братва FC Mobile League Portal with real-time player analytics, match histories, and tournament leaderboards.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div id="app">
 
-  <!-- Header with Language Selector -->
+  <!-- Header with Custom Esports Crest & Language Dropdown -->
   <header class="app-header">
     <div class="brand">
-      <div class="brand-logo">
-        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      <!-- Premium Custom Esports Lion Crest Logo for Братва -->
+      <div class="brand-crest" title="Братва FC Mobile League">
+        <svg viewBox="0 0 100 100" class="crest-svg">
+          <defs>
+            <linearGradient id="crestGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff0038" />
+              <stop offset="100%" stop-color="#990022" />
+            </linearGradient>
+            <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+          </defs>
+          <!-- Outer Shield -->
+          <polygon points="50,5 92,22 80,78 50,96 20,78 8,22" fill="url(#crestGlow)" stroke="#ff4d73" stroke-width="3" filter="url(#glowFilter)" />
+          <polygon points="50,12 85,26 75,72 50,88 25,72 15,26" fill="#0b0b10" stroke="#ff0038" stroke-width="2" />
+          <!-- Inner Crown / Lion Head Silhouette -->
+          <path d="M35 45 L42 32 L50 40 L58 32 L65 45 L60 62 L40 62 Z" fill="#ffffff" />
+          <path d="M50 24 L56 35 L44 35 Z" fill="#ffb700" />
+          <circle cx="50" cy="52" r="4" fill="#ff0038" />
+        </svg>
       </div>
-      <div class="brand-text">Братва</div>
+      <div class="brand-details">
+        <div class="brand-text">БРАТВА</div>
+        <div class="brand-subtext">LEAGUE ESPORTS</div>
+      </div>
     </div>
 
     <div class="header-right">
-      <!-- Language Dropdown Selector -->
+      <!-- Language Dropdown Selector with SVG Flags -->
       <div class="lang-dropdown">
         <button class="lang-btn" id="lang-toggle-btn" aria-label="Select Language">
-          <span id="current-flag">🇬🇧</span>
-          <span id="current-lang-code">EN</span>
-          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l4 4 4-4"/></svg>
+          <span id="current-flag-container" class="flag-icon-wrap">
+            <!-- Dynamic SVG Flag -->
+            <svg class="svg-flag" viewBox="0 0 640 480"><path fill="#012169" d="M0 0h640v480H0z"/><path fill="#FFF" d="m75 0 245 180L565 0h75v55L400 240l240 185v55h-75L320 300 75 480H0v-55l240-185L0 55V0h75z"/><path fill="#C8102E" d="m425 300 215 165v15h-30L380 300h45zM175 180 0 45V30h30l215 165h-70zM0 435l215-165h45L30 480H0v-45zM640 45 425 210h-45L610 0h30v45z"/><path fill="#FFF" d="M240 0v480h160V0H240zM0 160v160h640V160H0z"/><path fill="#C8102E" d="M267 0v480h106V0H267zM0 187v106h640V187H0z"/></svg>
+          </span>
+          <span id="current-lang-code" class="lang-code-text">EN</span>
+          <svg class="dropdown-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l4 4 4-4"/></svg>
         </button>
         <div class="lang-menu" id="lang-menu">
           <button class="lang-opt active" data-lang="en">
-            <span>🇬🇧</span> English
+            <span class="flag-icon-wrap"><svg class="svg-flag" viewBox="0 0 640 480"><path fill="#012169" d="M0 0h640v480H0z"/><path fill="#FFF" d="m75 0 245 180L565 0h75v55L400 240l240 185v55h-75L320 300 75 480H0v-55l240-185L0 55V0h75z"/><path fill="#C8102E" d="m425 300 215 165v15h-30L380 300h45zM175 180 0 45V30h30l215 165h-70zM0 435l215-165h45L30 480H0v-45zM640 45 425 210h-45L610 0h30v45z"/><path fill="#FFF" d="M240 0v480h160V0H240zM0 160v160h640V160H0z"/><path fill="#C8102E" d="M267 0v480h106V0H267zM0 187v106h640V187H0z"/></svg></span>
+            <span>English</span>
           </button>
           <button class="lang-opt" data-lang="ar">
-            <span>🇸🇦</span> العربية
+            <span class="flag-icon-wrap"><svg class="svg-flag" viewBox="0 0 640 480"><path fill="#007A3D" d="M0 0h640v160H0z"/><path fill="#FFF" d="M0 160h640v160H0z"/><path fill="#000" d="M0 320h640v160H0z"/><path fill="#CE1126" d="M0 0v480l240-240Z"/></svg></span>
+            <span>العربية</span>
           </button>
           <button class="lang-opt" data-lang="ru">
-            <span>🇷🇺</span> Русский
+            <span class="flag-icon-wrap"><svg class="svg-flag" viewBox="0 0 640 480"><path fill="#fff" d="M0 0h640v160H0z"/><path fill="#0039a6" d="M0 160h640v160H0z"/><path fill="#d52b1e" d="M0 320h640v160H0z"/></svg></span>
+            <span>Русский</span>
           </button>
           <button class="lang-opt" data-lang="es">
-            <span>🇪🇸</span> Español
+            <span class="flag-icon-wrap"><svg class="svg-flag" viewBox="0 0 640 480"><path fill="#aa151b" d="M0 0h640v120H0zM0 360h640v120H0z"/><path fill="#f1bf00" d="M0 120h640v240H0z"/></svg></span>
+            <span>Español</span>
           </button>
         </div>
       </div>
@@ -55,25 +84,25 @@
     <!-- TAB: DASHBOARD -->
     <section class="tab-page active" id="tab-dashboard">
       <!-- Hero League Summary Card -->
-      <div class="card hero-card">
+      <div class="card hero-card animate-slide-up">
         <div class="card-header-bar">
           <span class="card-title-sm" data-i18n="league_record">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
             League Overview
           </span>
           <span id="hero-winrate-badge" class="tag-badge t-badge-win">0.0% W/R</span>
         </div>
 
         <div class="hero-grid">
-          <div class="hero-metric">
+          <div class="hero-metric pulse-hover">
             <div class="hero-metric-val text-win" id="hero-wins">0</div>
             <div class="hero-metric-lbl" data-i18n="wins">Wins</div>
           </div>
-          <div class="hero-metric">
+          <div class="hero-metric pulse-hover">
             <div class="hero-metric-val text-draw" id="hero-draws">0</div>
             <div class="hero-metric-lbl" data-i18n="draws">Draws</div>
           </div>
-          <div class="hero-metric">
+          <div class="hero-metric pulse-hover">
             <div class="hero-metric-val text-loss" id="hero-losses">0</div>
             <div class="hero-metric-lbl" data-i18n="losses">Losses</div>
           </div>
@@ -81,9 +110,12 @@
       </div>
 
       <!-- Recent Match Banner -->
-      <div class="card">
+      <div class="card animate-slide-up delay-1">
         <div class="card-header-bar">
-          <span class="card-title-sm" data-i18n="recent_tournament">Recent Match</span>
+          <span class="card-title-sm" data-i18n="recent_tournament">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5C7 4 9 7 12 7s5-3 7.5-3a2.5 2.5 0 0 1 0 5H18"/><path d="M18 9v8a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V9"/></svg>
+            Recent Match
+          </span>
         </div>
         <div id="recent-match-container">
           <div style="text-align:center; padding:12px; color:var(--text-muted);" data-i18n="loading">Loading...</div>
@@ -91,9 +123,12 @@
       </div>
 
       <!-- Top Scorer Leaderboard Preview -->
-      <div class="card">
+      <div class="card animate-slide-up delay-2">
         <div class="card-header-bar">
-          <span class="card-title-sm" data-i18n="top_performers">Top Performers</span>
+          <span class="card-title-sm" data-i18n="top_performers">
+            <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Top Performers
+          </span>
         </div>
         <table class="data-table">
           <thead>
@@ -104,16 +139,17 @@
               <th data-i18n="matches" style="text-align:right;">Matches</th>
             </tr>
           </thead>
-          <tbody id="top-performers-tbody">
-            <!-- Dynamic content -->
-          </tbody>
+          <tbody id="top-performers-tbody"></tbody>
         </table>
       </div>
 
       <!-- Flagged Admin Review List -->
-      <div class="card" id="flagged-card-box" style="display:none; border-color:var(--loss-red);">
+      <div class="card animate-slide-up" id="flagged-card-box" style="display:none; border-color:var(--loss-red);">
         <div class="card-header-bar">
-          <span class="card-title-sm text-loss" data-i18n="flagged_players">⚠️ Flagged for Admin Review</span>
+          <span class="card-title-sm text-loss" data-i18n="flagged_players">
+            <svg class="icon-svg text-loss" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Flagged for Admin Review
+          </span>
         </div>
         <div id="flagged-players-list"></div>
       </div>
@@ -121,9 +157,12 @@
 
     <!-- TAB: TOURNAMENTS -->
     <section class="tab-page" id="tab-tournaments">
-      <div class="card">
+      <div class="card animate-slide-up">
         <div class="card-header-bar">
-          <span class="card-title-sm" data-i18n="tournament_history">Tournament History</span>
+          <span class="card-title-sm" data-i18n="tournament_history">
+            <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Tournament History
+          </span>
         </div>
         <div id="tournaments-list-container"></div>
       </div>
@@ -131,8 +170,8 @@
 
     <!-- TAB: ROSTER / PLAYERS -->
     <section class="tab-page" id="tab-players">
-      <input type="text" id="roster-search-input" class="search-input-box" placeholder="Search player name..." data-i18n-ph="search_placeholder">
-      <div class="card">
+      <input type="text" id="roster-search-input" class="search-input-box animate-slide-up" placeholder="Search player name..." data-i18n-ph="search_placeholder">
+      <div class="card animate-slide-up delay-1">
         <table class="data-table">
           <thead>
             <tr>
@@ -148,13 +187,13 @@
 
     <!-- TAB: LEADERBOARD -->
     <section class="tab-page" id="tab-leaderboard">
-      <div class="filter-bar">
+      <div class="filter-bar animate-slide-up">
         <button class="btn-filter active" data-window="all" data-i18n="all_time">All Time</button>
         <button class="btn-filter" data-window="7" data-i18n="window_7d">7 Days</button>
         <button class="btn-filter" data-window="30" data-i18n="window_30d">30 Days</button>
       </div>
 
-      <div class="card">
+      <div class="card animate-slide-up delay-1">
         <table class="data-table">
           <thead>
             <tr>
@@ -173,7 +212,7 @@
 
   <!-- Player Detail Modal with Weekly Interactive Performance Chart -->
   <div class="modal-backdrop" id="player-modal">
-    <div class="modal-sheet">
+    <div class="modal-sheet animate-sheet-up">
       <button class="modal-close-btn" id="modal-close-x">&times;</button>
       <div id="modal-player-content"></div>
     </div>

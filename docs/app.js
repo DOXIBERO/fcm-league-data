@@ -1,13 +1,18 @@
 /* ============================================
    БРАТВА FC Mobile — Opera GX Esports Engine
-   Multilingual i18n, SVG Performance Charting,
-   High-density Stats & Real-time Analytics
+   Multilingual i18n, Dynamic SVG Flags,
+   SVG 7-Day Performance Graph, Esports Analytics
    ============================================ */
 
-// Internationalization Dictionary (EN, AR, RU, ES)
+const SVG_FLAGS = {
+  en: `<svg class="svg-flag" viewBox="0 0 640 480"><path fill="#012169" d="M0 0h640v480H0z"/><path fill="#FFF" d="m75 0 245 180L565 0h75v55L400 240l240 185v55h-75L320 300 75 480H0v-55l240-185L0 55V0h75z"/><path fill="#C8102E" d="m425 300 215 165v15h-30L380 300h45zM175 180 0 45V30h30l215 165h-70zM0 435l215-165h45L30 480H0v-45zM640 45 425 210h-45L610 0h30v45z"/><path fill="#FFF" d="M240 0v480h160V0H240zM0 160v160h640V160H0z"/><path fill="#C8102E" d="M267 0v480h106V0H267zM0 187v106h640V187H0z"/></svg>`,
+  ar: `<svg class="svg-flag" viewBox="0 0 640 480"><path fill="#007A3D" d="M0 0h640v160H0z"/><path fill="#FFF" d="M0 160h640v160H0z"/><path fill="#000" d="M0 320h640v160H0z"/><path fill="#CE1126" d="M0 0v480l240-240Z"/></svg>`,
+  ru: `<svg class="svg-flag" viewBox="0 0 640 480"><path fill="#fff" d="M0 0h640v160H0z"/><path fill="#0039a6" d="M0 160h640v160H0z"/><path fill="#d52b1e" d="M0 320h640v160H0z"/></svg>`,
+  es: `<svg class="svg-flag" viewBox="0 0 640 480"><path fill="#aa151b" d="M0 0h640v120H0zM0 360h640v120H0z"/><path fill="#f1bf00" d="M0 120h640v240H0z"/></svg>`
+};
+
 const I18N = {
   en: {
-    flag: '🇬🇧',
     dir: 'ltr',
     league_record: 'League Overview',
     wins: 'Wins',
@@ -42,7 +47,6 @@ const I18N = {
     eligibility_flagged: '⚠️ FLAGGED (3 CONSECUTIVE FAILS)'
   },
   ar: {
-    flag: '🇸🇦',
     dir: 'rtl',
     league_record: 'نظرة عامة على الدوري',
     wins: 'انتصارات',
@@ -77,7 +81,6 @@ const I18N = {
     eligibility_flagged: '⚠️ مراجعة مطلوبة (3 إخفاقات متتالية)'
   },
   ru: {
-    flag: '🇷🇺',
     dir: 'ltr',
     league_record: 'Обзор лиги',
     wins: 'Победы',
@@ -112,7 +115,6 @@ const I18N = {
     eligibility_flagged: '⚠️ ТРЕБУЕТСЯ ПРОВЕРКА (3 провала подряд)'
   },
   es: {
-    flag: '🇪🇸',
     dir: 'ltr',
     league_record: 'Resumen de Liga',
     wins: 'Victorias',
@@ -173,7 +175,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   renderAll();
 });
 
-// --- Language Selector & i18n ---
+// --- Language Selector ---
 function setupLanguageSelector() {
   const toggleBtn = document.getElementById('lang-toggle-btn');
   const menu = document.getElementById('lang-menu');
@@ -205,11 +207,11 @@ function setLanguage(langCode) {
   document.documentElement.setAttribute('dir', dict.dir);
   document.documentElement.setAttribute('lang', langCode);
 
-  // Update header text
-  document.getElementById('current-flag').textContent = dict.flag;
+  // Update SVG Flag & Language Code in Header
+  document.getElementById('current-flag-container').innerHTML = SVG_FLAGS[langCode];
   document.getElementById('current-lang-code').textContent = langCode.toUpperCase();
 
-  // Translate all DOM elements with data-i18n
+  // Translate DOM elements
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
     if (dict[key]) el.textContent = dict[key];
@@ -309,7 +311,7 @@ function renderDashboard() {
     const tItem = state.tournaments[0];
     const badgeClass = tItem.result === 'win' ? 't-badge-win' : tItem.result === 'loss' ? 't-badge-loss' : 't-badge-draw';
     recentBox.innerHTML = `
-      <div class="t-card" onclick="openTournamentModal('${tItem.tournament_id}')">
+      <div class="t-card pulse-hover" onclick="openTournamentModal('${tItem.tournament_id}')">
         <div class="t-banner">
           <div class="t-team">
             <span class="t-team-name">Братва</span>
@@ -366,7 +368,7 @@ function renderTournaments() {
   container.innerHTML = state.tournaments.map(tItem => {
     const badgeClass = tItem.result === 'win' ? 't-badge-win' : tItem.result === 'loss' ? 't-badge-loss' : 't-badge-draw';
     return `
-      <div class="t-card" style="margin-bottom:12px;" onclick="openTournamentModal('${tItem.tournament_id}')">
+      <div class="t-card pulse-hover" style="margin-bottom:12px;" onclick="openTournamentModal('${tItem.tournament_id}')">
         <div class="t-banner">
           <div class="t-team">
             <span class="t-team-name">Братва</span>
@@ -491,7 +493,7 @@ function openPlayerModal(playerId) {
     ${eligHTML}
 
     <div class="card-title-sm" style="margin:12px 0 6px;">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 6l-9.5 9.5-5-5L1 18"/></svg>
+      <svg class="icon-svg" viewBox="0 0 24 24"><path d="M23 6l-9.5 9.5-5-5L1 18"/></svg>
       ${t('performance_chart')}
     </div>
     <div style="font-size:0.65rem; color:var(--text-muted); margin-bottom:8px;">${t('click_point_hint')}</div>
@@ -523,12 +525,10 @@ function openPlayerModal(playerId) {
   attachChartPointListeners(chartData);
 }
 
-// Generate last 7 days performance mapping
 function build7DayPerformanceData(player) {
   const days = [];
   const now = new Date();
 
-  // Create list of last 7 calendar days
   for (let i = 6; i >= 0; i--) {
     const d = new Date();
     d.setDate(now.getDate() - i);
@@ -536,7 +536,6 @@ function build7DayPerformanceData(player) {
     days.push({ dateStr, dayLabel: d.toLocaleDateString(state.lang, { weekday: 'short' }), match: null, status: 'no_tournament' });
   }
 
-  // Map matches to dates
   (player.matches || []).forEach(m => {
     const tInfo = state.tournamentsIndex[m.tournament_id];
     const matchDate = tInfo ? tInfo.date : null;
@@ -561,7 +560,6 @@ function build7DayPerformanceData(player) {
   return days;
 }
 
-// Render SVG Chart Line + Data Points
 function renderSVGPerformanceChart(daysData) {
   const svgWidth = 320;
   const svgHeight = 130;
@@ -570,7 +568,6 @@ function renderSVGPerformanceChart(daysData) {
 
   const stepX = (svgWidth - paddingX * 2) / (daysData.length - 1);
 
-  // Compute Y coordinate: Goals 0-40 mapped to svgHeight-paddingY .. paddingY
   const getY = (goals) => {
     const maxG = 40;
     const g = Math.min(Math.max(goals, 0), maxG);
@@ -596,16 +593,10 @@ function renderSVGPerformanceChart(daysData) {
         </linearGradient>
       </defs>
 
-      <!-- Baseline -->
       <line x1="${paddingX}" y1="${svgHeight - paddingY}" x2="${svgWidth - paddingX}" y2="${svgHeight - paddingY}" class="chart-axis-line" />
-
-      <!-- Area fill -->
       <path d="${areaD}" class="chart-area" />
-
-      <!-- Line path -->
       <path d="${pathD}" class="chart-path" />
 
-      <!-- Points -->
       ${points.map((p, i) => {
         let ptClass = 'point-none';
         if (p.data.status === 'great') ptClass = 'point-great';
