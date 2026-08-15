@@ -594,10 +594,18 @@ svg { overflow: visible; }
   padding: 20px;
 }
 
-.modal-page {
+.modal-wrapper {
+  position: relative;
   width: 100%;
   max-width: 450px;
   max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-page {
+  width: 100%;
+  flex: 1;
   background: var(--paper-bg);
   background-image: 
     linear-gradient(transparent 29px, var(--paper-line) 29px, var(--paper-line) 30px, transparent 30px);
@@ -605,7 +613,6 @@ svg { overflow: visible; }
   padding: 20px 20px 20px 50px;
   border-radius: 3px;
   box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
-  position: relative;
   overflow-y: auto;
   overflow-x: hidden;
   line-height: 30px;
@@ -620,7 +627,7 @@ svg { overflow: visible; }
 
 .close-tape {
   position: absolute;
-  top: -10px;
+  top: -15px;
   right: -10px;
   background: var(--tape-bg);
   padding: 5px 15px;
