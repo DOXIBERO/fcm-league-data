@@ -1,0 +1,11 @@
+{
+  "player_id": "god_srw",
+  "display_name": "GOD_SRW",
+  "known_aliases": [],
+  "matches": [],
+  "eligibility_streak": {
+    "current_fail_streak": 0,
+    "last_evaluated_tournament_id": null,
+    "flagged_for_review": false
+  }
+}
