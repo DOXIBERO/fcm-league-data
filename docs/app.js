@@ -345,12 +345,12 @@ function renderDashboard() {
         <div style="display: flex; justify-content: space-around; align-items: center;">
           <div style="text-align: center;">
             <div class="username" style="font-size: 1.2rem;">Братва</div>
-            <div style="font-size: 1.8rem; font-family: var(--font-formal); font-weight: bold;">${tItem.our_total_goals}</div>
+            <div style="font-size: 1.8rem; font-family: system-ui, -apple-system, sans-serif; font-weight: bold;">${tItem.our_total_goals}</div>
           </div>
           <div style="text-align: center; font-family: var(--font-hand); color: var(--pencil-light);">VS</div>
           <div style="text-align: center;">
             <div class="username" style="font-size: 1.2rem; max-width: 80px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHTML(tItem.opponent_league)}</div>
-            <div style="font-size: 1.8rem; font-family: var(--font-formal); font-weight: bold;">${tItem.opponent_total_goals}</div>
+            <div style="font-size: 1.8rem; font-family: system-ui, -apple-system, sans-serif; font-weight: bold;">${tItem.opponent_total_goals}</div>
           </div>
         </div>
 
@@ -375,11 +375,11 @@ function renderDashboard() {
 
   topTbody.innerHTML = top3.map((p, idx) => `
     <tr class="sketch-row" onclick="openPlayerModal('${p.player_id}')">
-      <td style="font-family: var(--font-formal); font-weight: bold;">
+      <td style="font-family: system-ui, -apple-system, sans-serif; font-weight: bold;">
         ${idx === 0 ? '<span class="rank-highlight">#1</span>' : `#${idx + 1}`}
       </td>
       <td class="username">${escapeHTML(p.display_name)}</td>
-      <td style="text-align:right; font-weight:bold; font-family: var(--font-formal); color: var(--pencil-blue);">${getPlayerGoals(p)}</td>
+      <td style="text-align:right; font-weight:bold; font-family: system-ui, -apple-system, sans-serif; color: var(--pencil-blue);">${getPlayerGoals(p)}</td>
       <td style="text-align:right; color:var(--pencil-light);">${p.matches ? p.matches.length : 0}</td>
     </tr>
   `).join('');
@@ -407,18 +407,18 @@ function renderTournaments() {
   container.innerHTML = state.tournaments.map(tItem => {
     const stampClass = tItem.result === 'win' ? 'stamp-win' : tItem.result === 'loss' ? 'stamp-loss' : 'stamp-draw';
     return `
-      <div style="border-bottom: 2px dashed var(--pencil-light); margin-bottom: 15px; padding-bottom: 10px; cursor: pointer;" onclick="openTournamentModal('${tItem.tournament_id}')">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-          <span class="hand-text" style="color: var(--pencil-light);">${tItem.date}</span>
-          <span class="hand-text" style="color: var(--pencil-light);">${tItem.format || '32v32'}</span>
+      <div style="border-bottom: 1px dashed var(--pencil-light); margin-bottom: 8px; padding-bottom: 8px; cursor: pointer;" onclick="openTournamentModal('${tItem.tournament_id}')">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="stamp ${stampClass}" style="font-size: 0.7rem; padding: 1px 4px;">${tItem.result || 'In Progress'}</span>
+            <span class="hand-text" style="color: var(--pencil-light); font-size: 0.8rem;">${tItem.date}</span>
+          </div>
+          <span class="hand-text" style="color: var(--pencil-light); font-size: 0.8rem;">${tItem.format || '32v32'}</span>
         </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; font-family: var(--font-formal);">
-          <div style="font-size: 1.2rem; font-weight: bold;">Братва ${tItem.our_total_goals}</div>
-          <div style="font-family: var(--font-hand); color: var(--pencil-light);">VS</div>
-          <div style="font-size: 1.1rem;">${tItem.opponent_total_goals} ${escapeHTML(tItem.opponent_league)}</div>
-        </div>
-        <div style="margin-top: 10px;">
-          <span class="stamp ${stampClass}" style="font-size: 0.8rem; padding: 1px 5px;">${tItem.result || 'In Progress'}</span>
+        <div style="display: grid; grid-template-columns: 1fr 30px 1fr; align-items: center; font-family: system-ui, -apple-system, sans-serif; font-size: 0.95rem;">
+          <div style="text-align: left; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Братва <span style="font-weight: bold;">${tItem.our_total_goals}</span></div>
+          <div style="text-align: center; font-family: var(--font-hand); color: var(--pencil-light); font-size: 0.8rem;">VS</div>
+          <div style="text-align: right; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span style="font-weight: bold;">${tItem.opponent_total_goals}</span> ${escapeHTML(tItem.opponent_league)}</div>
         </div>
       </div>
     `;
@@ -448,7 +448,7 @@ function renderRoster() {
         ${p.eligibility_streak?.flagged_for_review ? ' <span class="stamp stamp-loss" style="font-size:0.6rem;">FLAG</span>' : ''}
       </td>
       <td style="text-align:center; font-family: var(--font-hand);">${p.matches ? p.matches.length : 0}</td>
-      <td style="text-align:right; font-family: var(--font-formal); font-weight:bold;">${getPlayerGoals(p)}</td>
+      <td style="text-align:right; font-family: system-ui, -apple-system, sans-serif; font-weight:bold;">${getPlayerGoals(p)}</td>
     </tr>
   `).join('');
 }
@@ -489,11 +489,11 @@ function renderLeaderboard() {
 
   tbody.innerHTML = list.map((item, idx) => `
     <tr class="sketch-row" onclick="openPlayerModal('${item.player_id}')">
-      <td style="font-family: var(--font-formal); font-weight: bold;">
+      <td style="font-family: system-ui, -apple-system, sans-serif; font-weight: bold;">
         ${idx === 0 ? '<span class="rank-highlight">#1</span>' : `#${idx + 1}`}
       </td>
       <td class="username">${escapeHTML(item.display_name)}</td>
-      <td style="text-align:right; font-family: var(--font-formal); font-weight:bold; color: var(--pencil-blue);">${item.goals}</td>
+      <td style="text-align:right; font-family: system-ui, -apple-system, sans-serif; font-weight:bold; color: var(--pencil-blue);">${item.goals}</td>
       <td style="text-align:right; font-family: var(--font-hand); color:var(--pencil-light);">${item.avg}</td>
     </tr>
   `).join('');
@@ -548,7 +548,7 @@ function openPlayerModal(playerId) {
       ${(player.matches || []).map(m => `
         <div style="display:flex; justify-content:space-between; border-bottom: 1px dashed var(--pencil-light); padding: 5px 0;">
           <span class="hand-text">vs ${escapeHTML(m.opponent_display_name)}</span>
-          <span class="hand-text" style="font-weight:bold;">${m.goals_for} G (${m.turns_played !== undefined ? m.turns_played : 3}/3)</span>
+          <span style="font-family: system-ui, -apple-system, sans-serif; font-weight:bold;">${m.goals_for} G <span class="hand-text" style="font-weight:normal;">(${m.turns_played !== undefined ? m.turns_played : 3}/3)</span></span>
         </div>
       `).join('')}
     </div>
@@ -664,12 +664,12 @@ function openTournamentModal(tId) {
     <div style="display: flex; justify-content: space-around; align-items: center; margin-bottom: 20px;">
       <div style="text-align:center;">
         <div class="username">Братва</div>
-        <div style="font-size: 2rem; font-family: var(--font-formal); font-weight: bold;">${tItem.our_total_goals}</div>
+        <div style="font-size: 2rem; font-family: system-ui, -apple-system, sans-serif; font-weight: bold;">${tItem.our_total_goals}</div>
       </div>
       <div class="hand-text">VS</div>
       <div style="text-align:center;">
         <div class="username" style="max-width:80px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeHTML(tItem.opponent_league)}</div>
-        <div style="font-size: 2rem; font-family: var(--font-formal); font-weight: bold;">${tItem.opponent_total_goals}</div>
+        <div style="font-size: 2rem; font-family: system-ui, -apple-system, sans-serif; font-weight: bold;">${tItem.opponent_total_goals}</div>
       </div>
     </div>
 
@@ -678,7 +678,7 @@ function openTournamentModal(tId) {
       ${matches.map(m => `
         <div class="sketch-row" style="display:flex; justify-content:space-between; border-bottom: 1px dashed var(--pencil-light); padding: 5px 0;" onclick="openPlayerModal('${m.player_id}')">
           <span class="username">${escapeHTML(m.player_display_name || m.player_id)} <span class="hand-text" style="font-size:0.8rem; font-weight:normal;">(${m.turns_played !== undefined ? m.turns_played : 3}/3)</span></span>
-          <span class="hand-text" style="font-weight:bold;">${m.goals_for} G</span>
+          <span style="font-family: system-ui, -apple-system, sans-serif; font-weight:bold;">${m.goals_for} G</span>
         </div>
       `).join('')}
     </div>
