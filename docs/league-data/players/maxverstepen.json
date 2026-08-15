@@ -31,8 +31,7 @@
   "eligibility_streak": {
     "current_fail_streak": 0,
     "last_evaluated_tournament_id": "2026-08-12_warga",
-    "flagged_for_review": false,
-    "fails": 0
+    "flagged_for_review": false
   },
   "average_goals": 34
 }

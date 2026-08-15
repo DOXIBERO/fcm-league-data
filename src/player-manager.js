@@ -162,34 +162,32 @@ export function addAlias(playerId, newAlias) {
 /**
  * Evaluate eligibility for a player in a specific tournament.
  */
-export function updateEligibility(playerId, tournamentId, matchesPlayed, goalsForTotal) {
+export function updateEligibility(playerId) {
     const player = loadPlayer(playerId);
     if (!player) return;
     
-    if (matchesPlayed === 0) {
-        return;
-    }
+    player.matches.sort((a, b) => a.tournament_id.localeCompare(b.tournament_id));
     
-    if (!player.eligibility_streak) {
-        player.eligibility_streak = {
-            current_fail_streak: 0,
-            last_evaluated_tournament_id: null,
-            flagged_for_review: false
-        };
-    }
+    let currentFailStreak = 0;
+    let totalGoals = 0;
     
-    player.eligibility_streak.last_evaluated_tournament_id = tournamentId;
-    
-    const passed = matchesPlayed === 3 && goalsForTotal >= 20;
-    
-    if (passed) {
-        player.eligibility_streak.current_fail_streak = 0;
-    } else {
-        player.eligibility_streak.current_fail_streak += 1;
-        if (player.eligibility_streak.current_fail_streak >= 3) {
-            player.eligibility_streak.flagged_for_review = true;
+    for (const m of player.matches) {
+        const passed = m.turns_played === 3 && m.goals_for >= 20;
+        if (passed) {
+            currentFailStreak = 0;
+        } else {
+            currentFailStreak += 1;
         }
+        totalGoals += (m.goals_for || 0);
     }
+    
+    player.eligibility_streak = {
+        current_fail_streak: currentFailStreak,
+        last_evaluated_tournament_id: player.matches.length > 0 ? player.matches[player.matches.length - 1].tournament_id : null,
+        flagged_for_review: currentFailStreak >= 3
+    };
+    
+    player.average_goals = player.matches.length > 0 ? Math.round(totalGoals / player.matches.length) : 0;
     
     savePlayer(player);
 }
