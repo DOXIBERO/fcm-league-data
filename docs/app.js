@@ -173,40 +173,24 @@ const SoundManager = {
       this.ctx = new (window.AudioContext || window.webkitAudioContext)();
     }
   },
-  playPop() {
+  playClick() {
     if (!this.ctx) return;
     const osc = this.ctx.createOscillator();
     const gain = this.ctx.createGain();
     osc.connect(gain);
     gain.connect(this.ctx.destination);
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(400, this.ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(600, this.ctx.currentTime + 0.05);
-    gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.05);
+    
+    // High frequency tick for a crisp "click"
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(1500, this.ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(100, this.ctx.currentTime + 0.02);
+    
+    // Very short, sharp envelope
+    gain.gain.setValueAtTime(0.1, this.ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.02);
+    
     osc.start();
-    osc.stop(this.ctx.currentTime + 0.05);
-  },
-  playPaper() {
-    if (!this.ctx) return;
-    const bufferSize = this.ctx.sampleRate * 0.1; // 100ms
-    const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
-    const data = buffer.getChannelData(0);
-    for (let i = 0; i < bufferSize; i++) {
-      data[i] = Math.random() * 2 - 1; // White noise
-    }
-    const noise = this.ctx.createBufferSource();
-    noise.buffer = buffer;
-    const filter = this.ctx.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.value = 800; // Muffled paper sound
-    const gain = this.ctx.createGain();
-    gain.gain.setValueAtTime(0.3, this.ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.1);
-    noise.connect(filter);
-    filter.connect(gain);
-    gain.connect(this.ctx.destination);
-    noise.start();
+    osc.stop(this.ctx.currentTime + 0.02);
   }
 };
 
@@ -331,7 +315,7 @@ function setupNavigation() {
   const navs = document.querySelectorAll('.nav-item');
   navs.forEach(nav => {
     nav.addEventListener('click', () => {
-      SoundManager.playPaper();
+      SoundManager.playClick();
       const newTab = nav.dataset.tab;
       if (newTab === state.activeTab) return;
       
@@ -580,15 +564,15 @@ function openPlayerModal(playerId) {
   const content = document.getElementById('modal-player-content');
   const page = document.getElementById('modal-page');
 
-  SoundManager.playPop();
+  SoundManager.playClick();
 
   document.getElementById('modal-close-x').onclick = () => {
-    SoundManager.playPop();
+    SoundManager.playClick();
     overlay.style.display = 'none';
   };
   overlay.onclick = (e) => { 
     if (e.target === overlay) {
-      SoundManager.playPop();
+      SoundManager.playClick();
       overlay.style.display = 'none';
     } 
   };
@@ -739,13 +723,13 @@ function openTournamentModal(tId) {
   const overlay = document.getElementById('player-modal');
   const content = document.getElementById('modal-player-content');
   
-  SoundManager.playPop();
+  SoundManager.playClick();
 
   document.getElementById('modal-close-x').onclick = () => {
-    SoundManager.playPop();
+    SoundManager.playClick();
     overlay.style.display = 'none';
   };
-  overlay.onclick = (e) => { if (e.target === overlay) { SoundManager.playPop(); overlay.style.display = 'none'; } };
+  overlay.onclick = (e) => { if (e.target === overlay) { SoundManager.playClick(); overlay.style.display = 'none'; } };
 
   const matches = [...(tItem.matches || [])].sort((a, b) => b.goals_for - a.goals_for);
 

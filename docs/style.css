@@ -695,16 +695,4 @@ svg { overflow: visible; }
   font-family: var(--font-hand);
 }
 
-/* --- Animations (Squigglevision / Boiling Line) --- */
-@keyframes boiling {
-  0% { translate: 0px 0px; rotate: 0deg; }
-  25% { translate: 1px -1px; rotate: 0.5deg; }
-  50% { translate: -1px 1px; rotate: -0.5deg; }
-  75% { translate: 1px 1px; rotate: 0deg; }
-  100% { translate: 0px 0px; rotate: 0deg; }
-}
-
-.cartoon-motion, .pin, .tape, .close-tape, .stamp, .brand-text {
-  /* Use steps() for choppy frame rate like a sketchbook */
-  animation: boiling 0.4s infinite steps(4);
-}
+/* (Animations removed per user request) */
