@@ -345,12 +345,12 @@ function renderDashboard() {
         <div style="display: flex; justify-content: space-around; align-items: center;">
           <div style="text-align: center;">
             <div class="username" style="font-size: 1.2rem;">Братва</div>
-            <div style="font-size: 1.8rem; font-family: system-ui, -apple-system, sans-serif; font-weight: bold;">${tItem.our_total_goals}</div>
+            <div style="font-size: 1.8rem; font-family: var(--font-formal); font-weight: bold;">${tItem.our_total_goals}</div>
           </div>
           <div style="text-align: center; font-family: var(--font-hand); color: var(--pencil-light);">VS</div>
           <div style="text-align: center;">
             <div class="username" style="font-size: 1.2rem; max-width: 80px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHTML(tItem.opponent_league)}</div>
-            <div style="font-size: 1.8rem; font-family: system-ui, -apple-system, sans-serif; font-weight: bold;">${tItem.opponent_total_goals}</div>
+            <div style="font-size: 1.8rem; font-family: var(--font-formal); font-weight: bold;">${tItem.opponent_total_goals}</div>
           </div>
         </div>
 
