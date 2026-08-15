@@ -180,17 +180,18 @@ const SoundManager = {
     osc.connect(gain);
     gain.connect(this.ctx.destination);
     
-    // High frequency tick for a crisp "click"
-    osc.type = 'square';
-    osc.frequency.setValueAtTime(1500, this.ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(100, this.ctx.currentTime + 0.02);
+    // Chill, low-frequency bass "thump"
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(150, this.ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(50, this.ctx.currentTime + 0.05);
     
-    // Very short, sharp envelope
-    gain.gain.setValueAtTime(0.1, this.ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.02);
+    // Very quiet, gentle envelope
+    gain.gain.setValueAtTime(0, this.ctx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.05, this.ctx.currentTime + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.08);
     
     osc.start();
-    osc.stop(this.ctx.currentTime + 0.02);
+    osc.stop(this.ctx.currentTime + 0.08);
   }
 };
 
