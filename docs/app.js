@@ -231,9 +231,10 @@ function t(key, vars = {}) {
 
 // --- Data Fetching ---
 async function loadData() {
+  const cb = Date.now();
   for (const path of DATA_PATHS) {
     try {
-      const res = await fetch(`${path}/index/players_index.json`);
+      const res = await fetch(`${path}/index/players_index.json?v=${cb}`);
       if (res.ok) {
         activePath = path;
         state.playersIndex = await res.json();
@@ -243,15 +244,15 @@ async function loadData() {
   }
 
   try {
-    const tRes = await fetch(`${activePath}/index/tournaments_index.json`);
+    const tRes = await fetch(`${activePath}/index/tournaments_index.json?v=${cb}`);
     if (tRes.ok) state.tournamentsIndex = await tRes.json();
   } catch (e) {}
 
   const pIds = Object.keys(state.playersIndex);
-  const pPromises = pIds.map(id => fetch(`${activePath}/players/${id}.json`).then(r => r.ok ? r.json() : null).catch(() => null));
+  const pPromises = pIds.map(id => fetch(`${activePath}/players/${id}.json?v=${cb}`).then(r => r.ok ? r.json() : null).catch(() => null));
 
   const tIds = Object.keys(state.tournamentsIndex);
-  const tPromises = tIds.map(id => fetch(`${activePath}/tournaments/${id}.json`).then(r => r.ok ? r.json() : null).catch(() => null));
+  const tPromises = tIds.map(id => fetch(`${activePath}/tournaments/${id}.json?v=${cb}`).then(r => r.ok ? r.json() : null).catch(() => null));
 
   const [pResults, tResults] = await Promise.all([Promise.all(pPromises), Promise.all(tPromises)]);
 
