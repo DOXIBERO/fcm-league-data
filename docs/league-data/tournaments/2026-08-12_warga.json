@@ -1,0 +1,108 @@
+{
+  "tournament_id": "2026-08-12_warga",
+  "date": "2026-08-12",
+  "opponent_league": "Warga +82™",
+  "format": "8v8",
+  "status": "complete",
+  "our_total_goals": 130,
+  "opponent_total_goals": 225,
+  "result": "loss",
+  "matches": [
+    {
+      "tournament_id": "2026-08-12_warga",
+      "match_index_in_tournament": 0,
+      "opponent_display_name": "Warga +82™",
+      "opponent_id": "warga_82",
+      "goals_for": 36,
+      "goals_against": 0,
+      "result": "win",
+      "turns_played": 3,
+      "player_display_name": "саня",
+      "player_id": "sanya"
+    },
+    {
+      "tournament_id": "2026-08-12_warga",
+      "match_index_in_tournament": 1,
+      "opponent_display_name": "Warga +82™",
+      "opponent_id": "warga_82",
+      "goals_for": 34,
+      "goals_against": 0,
+      "result": "win",
+      "turns_played": 3,
+      "player_display_name": "MaxVerstepen",
+      "player_id": "maxverstepen"
+    },
+    {
+      "tournament_id": "2026-08-12_warga",
+      "match_index_in_tournament": 2,
+      "opponent_display_name": "Warga +82™",
+      "opponent_id": "warga_82",
+      "goals_for": 0,
+      "goals_against": 0,
+      "result": "draw",
+      "turns_played": 0,
+      "player_display_name": "thuner",
+      "player_id": "thuner"
+    },
+    {
+      "tournament_id": "2026-08-12_warga",
+      "match_index_in_tournament": 3,
+      "opponent_display_name": "Warga +82™",
+      "opponent_id": "warga_82",
+      "goals_for": 0,
+      "goals_against": 0,
+      "result": "draw",
+      "turns_played": 0,
+      "player_display_name": "CR7Siiii",
+      "player_id": "cr7siiii"
+    },
+    {
+      "tournament_id": "2026-08-12_warga",
+      "match_index_in_tournament": 4,
+      "opponent_display_name": "Warga +82™",
+      "opponent_id": "warga_82",
+      "goals_for": 0,
+      "goals_against": 0,
+      "result": "draw",
+      "turns_played": 0,
+      "player_display_name": "riztian",
+      "player_id": "riztian"
+    },
+    {
+      "tournament_id": "2026-08-12_warga",
+      "match_index_in_tournament": 5,
+      "opponent_display_name": "Warga +82™",
+      "opponent_id": "warga_82",
+      "goals_for": 0,
+      "goals_against": 0,
+      "result": "draw",
+      "turns_played": 0,
+      "player_display_name": "RMa_jXAHB",
+      "player_id": "rma_jxahb"
+    },
+    {
+      "tournament_id": "2026-08-12_warga",
+      "match_index_in_tournament": 6,
+      "opponent_display_name": "Warga +82™",
+      "opponent_id": "warga_82",
+      "goals_for": 32,
+      "goals_against": 0,
+      "result": "win",
+      "turns_played": 3,
+      "player_display_name": "Venusviper",
+      "player_id": "venusviper"
+    },
+    {
+      "tournament_id": "2026-08-12_warga",
+      "match_index_in_tournament": 7,
+      "opponent_display_name": "Warga +82™",
+      "opponent_id": "warga_82",
+      "goals_for": 28,
+      "goals_against": 0,
+      "result": "win",
+      "turns_played": 3,
+      "player_display_name": "K8N",
+      "player_id": "k8n"
+    }
+  ]
+}

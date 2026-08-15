@@ -28,11 +28,23 @@
       "turns_played": 0,
       "player_display_name": "Venusviper",
       "player_id": "venusviper"
+    },
+    {
+      "tournament_id": "2026-08-12_warga",
+      "match_index_in_tournament": 6,
+      "opponent_display_name": "Warga +82™",
+      "opponent_id": "warga_82",
+      "goals_for": 32,
+      "goals_against": 0,
+      "result": "win",
+      "turns_played": 3,
+      "player_display_name": "Venusviper",
+      "player_id": "venusviper"
     }
   ],
   "eligibility_streak": {
-    "current_fail_streak": 1,
-    "last_evaluated_tournament_id": "2026-08-09_abtal-al-arab",
+    "current_fail_streak": 0,
+    "last_evaluated_tournament_id": "2026-08-12_warga",
     "flagged_for_review": false
   }
 }

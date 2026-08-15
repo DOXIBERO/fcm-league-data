@@ -28,6 +28,18 @@
       "turns_played": 0,
       "player_display_name": "thuner",
       "player_id": "thuner"
+    },
+    {
+      "tournament_id": "2026-08-12_warga",
+      "match_index_in_tournament": 2,
+      "opponent_display_name": "Warga +82™",
+      "opponent_id": "warga_82",
+      "goals_for": 0,
+      "goals_against": 0,
+      "result": "draw",
+      "turns_played": 0,
+      "player_display_name": "thuner",
+      "player_id": "thuner"
     }
   ],
   "eligibility_streak": {

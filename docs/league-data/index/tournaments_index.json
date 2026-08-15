@@ -10,5 +10,11 @@
     "opponent_league": "OnsOranje®",
     "status": "complete",
     "result": "win"
+  },
+  "2026-08-12_warga": {
+    "date": "2026-08-12",
+    "opponent_league": "Warga +82™",
+    "status": "complete",
+    "result": "loss"
   }
 }
