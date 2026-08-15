@@ -38,11 +38,23 @@
       "turns_played": 0,
       "player_display_name": "PIAN77",
       "player_id": "pian77"
+    },
+    {
+      "tournament_id": "2026-08-14_free-palestine",
+      "match_index_in_tournament": 15,
+      "opponent_display_name": "FREE PALESTINE",
+      "opponent_id": "free-palestine",
+      "goals_for": 0,
+      "goals_against": 0,
+      "result": "loss",
+      "turns_played": 3,
+      "player_display_name": "PIAN77",
+      "player_id": "pian77"
     }
   ],
   "eligibility_streak": {
-    "current_fail_streak": 3,
-    "last_evaluated_tournament_id": "2026-08-13_arabs-team",
+    "current_fail_streak": 4,
+    "last_evaluated_tournament_id": "2026-08-14_free-palestine",
     "flagged_for_review": true
   },
   "average_goals": 0

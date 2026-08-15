@@ -14,11 +14,23 @@
       "turns_played": 0,
       "player_display_name": "R.ØÇąÑįTąS",
       "player_id": "rts"
+    },
+    {
+      "tournament_id": "2026-08-14_free-palestine",
+      "match_index_in_tournament": 7,
+      "opponent_display_name": "FREE PALESTINE",
+      "opponent_id": "free-palestine",
+      "goals_for": 0,
+      "goals_against": 0,
+      "result": "draw",
+      "turns_played": 0,
+      "player_display_name": "R.ØÇąÑįTąS",
+      "player_id": "rts"
     }
   ],
   "eligibility_streak": {
-    "current_fail_streak": 1,
-    "last_evaluated_tournament_id": "2026-08-13_arabs-team",
+    "current_fail_streak": 2,
+    "last_evaluated_tournament_id": "2026-08-14_free-palestine",
     "flagged_for_review": false
   }
 }

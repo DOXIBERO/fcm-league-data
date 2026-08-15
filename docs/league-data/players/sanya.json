@@ -50,11 +50,23 @@
       "turns_played": 3,
       "player_display_name": "саня",
       "player_id": "sanya"
+    },
+    {
+      "tournament_id": "2026-08-14_free-palestine",
+      "match_index_in_tournament": 1,
+      "opponent_display_name": "FREE PALESTINE",
+      "opponent_id": "free-palestine",
+      "goals_for": 37,
+      "goals_against": 0,
+      "result": "win",
+      "turns_played": 3,
+      "player_display_name": "саня",
+      "player_id": "sanya"
     }
   ],
   "eligibility_streak": {
     "current_fail_streak": 0,
-    "last_evaluated_tournament_id": "2026-08-13_arabs-team",
+    "last_evaluated_tournament_id": "2026-08-14_free-palestine",
     "flagged_for_review": false
   },
   "average_goals": 36

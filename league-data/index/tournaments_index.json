@@ -22,5 +22,11 @@
     "opponent_league": "ARAB'S TEAM",
     "status": "complete",
     "result": "win"
+  },
+  "2026-08-14_free-palestine": {
+    "date": "2026-08-14",
+    "opponent_league": "FREE PALESTINE",
+    "status": "complete",
+    "result": "loss"
   }
 }
