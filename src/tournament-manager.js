@@ -71,12 +71,12 @@ export function saveTournament(tournamentData) {
             ourTotal += (match.goals_for || 0);
             oppTotal += (match.goals_against || 0);
         }
-        existingData.our_total_goals = ourTotal;
-        existingData.opponent_total_goals = oppTotal;
+        existingData.our_total_goals = tournamentData.our_total_goals !== undefined ? tournamentData.our_total_goals : ourTotal;
+        existingData.opponent_total_goals = tournamentData.opponent_total_goals !== undefined ? tournamentData.opponent_total_goals : oppTotal;
 
-        if (ourTotal > oppTotal) {
+        if (existingData.our_total_goals > existingData.opponent_total_goals) {
             existingData.result = 'win';
-        } else if (oppTotal > ourTotal) {
+        } else if (existingData.opponent_total_goals > existingData.our_total_goals) {
             existingData.result = 'loss';
         } else {
             existingData.result = 'draw';
