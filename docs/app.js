@@ -31,8 +31,12 @@ const I18N = {
     performance_chart: '7-Day Trend',
     click_point_hint: '(Tap a point for details)',
     turns_completed: 'turns',
-    verdict_excellent: 'Excellent!',
-    verdict_underperformed: 'Needs work',
+    verdict_needs_work: 'Needs work',
+    verdict_acceptable: 'Acceptable',
+    verdict_good: 'Good',
+    verdict_perfect: 'Perfect',
+    verdict_champion: 'Champion',
+    verdict_legendary: 'Legendary',
     verdict_absent: 'Absent/Skipped',
     verdict_no_tournament: 'No tournament today',
     eligibility_ok: 'Eligible (0 Fails)',
@@ -66,10 +70,14 @@ const I18N = {
     performance_chart: 'أداء 7 أيام',
     click_point_hint: '(انقر للتفاصيل)',
     turns_completed: 'محاولات',
-    verdict_excellent: 'ممتاز!',
-    verdict_underperformed: 'ضعيف',
+    verdict_needs_work: 'ضعيف',
+    verdict_acceptable: 'مقبول',
+    verdict_good: 'جيد',
+    verdict_perfect: 'مثالي',
+    verdict_champion: 'بطل',
+    verdict_legendary: 'أسطوري',
     verdict_absent: 'غائب',
-    verdict_no_tournament: 'لا توجد مباراة',
+    verdict_no_tournament: 'لا توجد بطولة',
     eligibility_ok: 'مؤهل (0 فشل)',
     eligibility_warn: 'تحذير ({n} فشل)',
     eligibility_flagged: 'مراجعة (3 فشل!)'
@@ -101,10 +109,14 @@ const I18N = {
     performance_chart: 'Форма 7 дней',
     click_point_hint: '(Жми на точку)',
     turns_completed: 'ходов',
-    verdict_excellent: 'Отлично!',
-    verdict_underperformed: 'Слабо',
+    verdict_needs_work: 'Слабо',
+    verdict_acceptable: 'Приемлемо',
+    verdict_good: 'Хорошо',
+    verdict_perfect: 'Идеально',
+    verdict_champion: 'Чемпион',
+    verdict_legendary: 'Легенда',
     verdict_absent: 'Пропуск',
-    verdict_no_tournament: 'Нет матча',
+    verdict_no_tournament: 'Нет турнира',
     eligibility_ok: 'Допущен (0 провалов)',
     eligibility_warn: 'Внимание ({n} пров.)',
     eligibility_flagged: 'БАН? (3 провала!)'
@@ -136,10 +148,14 @@ const I18N = {
     performance_chart: 'Rendimiento 7d',
     click_point_hint: '(Toca un punto)',
     turns_completed: 'turnos',
-    verdict_excellent: '¡Excelente!',
-    verdict_underperformed: 'Bajo',
+    verdict_needs_work: 'Bajo',
+    verdict_acceptable: 'Aceptable',
+    verdict_good: 'Bueno',
+    verdict_perfect: 'Perfecto',
+    verdict_champion: 'Campeón',
+    verdict_legendary: 'Legendario',
     verdict_absent: 'Ausente',
-    verdict_no_tournament: 'Sin partido',
+    verdict_no_tournament: 'Sin torneo',
     eligibility_ok: 'Elegible (0 fallos)',
     eligibility_warn: 'Aviso ({n} fallos)',
     eligibility_flagged: 'REVISIÓN (3 fallos!)'
@@ -588,9 +604,13 @@ function build7DayPerformanceData(player) {
         dayObj.tournament = tInfo;
         const goals = m.goals_for || 0;
         const turns = m.turns_played !== undefined ? m.turns_played : 3;
-        if (turns === 3 && goals >= 20) dayObj.status = 'great';
-        else if (turns === 0) dayObj.status = 'absent';
-        else dayObj.status = 'bad';
+        if (turns === 0) dayObj.status = 'absent';
+        else if (goals >= 40) dayObj.status = 'legendary';
+        else if (goals >= 35) dayObj.status = 'champion';
+        else if (goals >= 30) dayObj.status = 'perfect';
+        else if (goals >= 25) dayObj.status = 'good';
+        else if (goals >= 20) dayObj.status = 'acceptable';
+        else dayObj.status = 'needs_work';
       }
     }
   });
@@ -634,15 +654,18 @@ function attachChartPointListeners(daysData) {
         summaryVerdict.innerHTML = `<span style="color:var(--pencil-light);">${t('verdict_no_tournament')}</span>`;
       } else if (d.status === 'absent') {
         summaryVerdict.innerHTML = `<span style="color:var(--pencil-red);">${t('verdict_absent')}</span>`;
-      } else if (d.status === 'great') {
-        summaryVerdict.innerHTML = `
-          <span style="color:var(--pencil-green);">${t('verdict_excellent')} (${d.match.goals_for}G)</span>
-          <div class="hand-text" style="font-size:0.9rem; margin-top:2px;">vs ${escapeHTML(d.match.opponent_display_name)} • ${d.match.turns_played !== undefined ? d.match.turns_played : 3}/3 ${t('turns_completed')}</div>
-        `;
       } else {
+        let color = 'var(--pencil-red)';
+        let verdictKey = 'verdict_needs_work';
+        if (d.status === 'legendary') { color = '#8e44ad'; verdictKey = 'verdict_legendary'; }
+        else if (d.status === 'champion') { color = 'var(--pencil-gold)'; verdictKey = 'verdict_champion'; }
+        else if (d.status === 'perfect') { color = 'var(--pencil-blue)'; verdictKey = 'verdict_perfect'; }
+        else if (d.status === 'good') { color = 'var(--pencil-green)'; verdictKey = 'verdict_good'; }
+        else if (d.status === 'acceptable') { color = '#555555'; verdictKey = 'verdict_acceptable'; }
+        
         summaryVerdict.innerHTML = `
-          <span style="color:var(--pencil-red);">${t('verdict_underperformed')} (${d.match.goals_for}G)</span>
-          <div class="hand-text" style="font-size:0.9rem; margin-top:2px;">vs ${escapeHTML(d.match.opponent_display_name)} • ${d.match.turns_played !== undefined ? d.match.turns_played : 0}/3 ${t('turns_completed')}</div>
+          <span style="color:${color}; font-weight:bold;">${t(verdictKey)} (${d.match.goals_for}G)</span>
+          <div class="hand-text" style="font-size:0.9rem; margin-top:2px;">vs ${escapeHTML(d.match.opponent_display_name)} • ${d.match.turns_played !== undefined ? d.match.turns_played : (d.match.goals_for ? 3 : 0)}/3 ${t('turns_completed')}</div>
         `;
       }
     });
