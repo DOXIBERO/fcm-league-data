@@ -180,18 +180,18 @@ const SoundManager = {
     osc.connect(gain);
     gain.connect(this.ctx.destination);
     
-    // Chill, low-frequency bass "thump"
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(150, this.ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(50, this.ctx.currentTime + 0.05);
+    // Cyber/Tech digital "blip" (Opera GX style)
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(3000, this.ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(500, this.ctx.currentTime + 0.03);
     
-    // Very quiet, gentle envelope
+    // Very tight, punchy envelope
     gain.gain.setValueAtTime(0, this.ctx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.05, this.ctx.currentTime + 0.01);
-    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.08);
+    gain.gain.linearRampToValueAtTime(0.08, this.ctx.currentTime + 0.005);
+    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.04);
     
     osc.start();
-    osc.stop(this.ctx.currentTime + 0.08);
+    osc.stop(this.ctx.currentTime + 0.04);
   }
 };
 
