@@ -14,11 +14,25 @@
       "turns_played": 0,
       "player_display_name": "MESSI",
       "player_id": "messi"
+    },
+    {
+      "tournament_id": "2026-08-09_abtal-al-arab",
+      "match_index_in_tournament": 8,
+      "opponent_display_name": "ابطال العرب",
+      "opponent_id": "abtal-al-arab",
+      "goals_for": 0,
+      "goals_against": 0,
+      "result": "draw",
+      "turns_played": 0,
+      "player_display_name": "MESSI",
+      "player_id": "messi"
     }
   ],
   "eligibility_streak": {
     "current_fail_streak": 0,
     "last_evaluated_tournament_id": null,
-    "flagged_for_review": false
-  }
+    "flagged_for_review": false,
+    "fails": 1
+  },
+  "average_goals": 0
 }

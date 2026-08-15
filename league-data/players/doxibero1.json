@@ -4,20 +4,6 @@
   "known_aliases": [],
   "matches": [
     {
-      "tournament_id": "2026-08-09_abtal-al-arab",
-      "match_index_in_tournament": null,
-      "opponent_display_name": "ابطال العرب",
-      "goals_for": 24,
-      "goals_against": null,
-      "result": null,
-      "source_screenshot": "batch_import",
-      "extracted_at": "2026-08-15T14:33:27Z",
-      "player_id": "doxibero1",
-      "player_display_name": "DOXIBERO1",
-      "is_aggregate": true,
-      "turns_played": 3
-    },
-    {
       "tournament_id": "2026-08-11_onsoranje",
       "match_index_in_tournament": 31,
       "opponent_display_name": "OnsOranje®",
@@ -28,11 +14,25 @@
       "turns_played": 3,
       "player_display_name": "DOXIBERO1",
       "player_id": "doxibero1"
+    },
+    {
+      "tournament_id": "2026-08-09_abtal-al-arab",
+      "match_index_in_tournament": 32,
+      "opponent_display_name": "ابطال العرب",
+      "opponent_id": "abtal-al-arab",
+      "goals_for": 24,
+      "goals_against": 0,
+      "result": "win",
+      "turns_played": 3,
+      "player_display_name": "DOXIBERO1",
+      "player_id": "doxibero1"
     }
   ],
   "eligibility_streak": {
     "current_fail_streak": 0,
-    "last_evaluated_tournament_id": "2026-08-11_onsoranje",
-    "flagged_for_review": false
-  }
+    "last_evaluated_tournament_id": "2026-08-09_abtal-al-arab",
+    "flagged_for_review": false,
+    "fails": 0
+  },
+  "average_goals": 24
 }

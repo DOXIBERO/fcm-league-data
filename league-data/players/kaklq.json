@@ -5,22 +5,22 @@
   "matches": [
     {
       "tournament_id": "2026-08-09_abtal-al-arab",
-      "match_index_in_tournament": null,
+      "match_index_in_tournament": 10,
       "opponent_display_name": "ابطال العرب",
+      "opponent_id": "abtal-al-arab",
       "goals_for": 22,
-      "goals_against": null,
-      "result": null,
-      "source_screenshot": "batch_import",
-      "extracted_at": "2026-08-15T14:33:26Z",
-      "player_id": "kaklq",
+      "goals_against": 0,
+      "result": "win",
+      "turns_played": 3,
       "player_display_name": "Kaklq",
-      "is_aggregate": true,
-      "turns_played": 3
+      "player_id": "kaklq"
     }
   ],
   "eligibility_streak": {
     "current_fail_streak": 0,
     "last_evaluated_tournament_id": "2026-08-09_abtal-al-arab",
-    "flagged_for_review": false
-  }
+    "flagged_for_review": false,
+    "fails": 0
+  },
+  "average_goals": 0
 }

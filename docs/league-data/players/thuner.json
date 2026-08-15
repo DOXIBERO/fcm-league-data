@@ -4,20 +4,6 @@
   "known_aliases": [],
   "matches": [
     {
-      "tournament_id": "2026-08-09_abtal-al-arab",
-      "match_index_in_tournament": null,
-      "opponent_display_name": "ابطال العرب",
-      "goals_for": 34,
-      "goals_against": null,
-      "result": null,
-      "source_screenshot": "batch_import",
-      "extracted_at": "2026-08-15T14:33:26Z",
-      "player_id": "thuner",
-      "player_display_name": "thuner",
-      "is_aggregate": true,
-      "turns_played": 3
-    },
-    {
       "tournament_id": "2026-08-11_onsoranje",
       "match_index_in_tournament": 21,
       "opponent_display_name": "OnsOranje®",
@@ -40,11 +26,25 @@
       "turns_played": 0,
       "player_display_name": "thuner",
       "player_id": "thuner"
+    },
+    {
+      "tournament_id": "2026-08-09_abtal-al-arab",
+      "match_index_in_tournament": 18,
+      "opponent_display_name": "ابطال العرب",
+      "opponent_id": "abtal-al-arab",
+      "goals_for": 34,
+      "goals_against": 0,
+      "result": "win",
+      "turns_played": 3,
+      "player_display_name": "thuner",
+      "player_id": "thuner"
     }
   ],
   "eligibility_streak": {
     "current_fail_streak": 0,
     "last_evaluated_tournament_id": "2026-08-09_abtal-al-arab",
-    "flagged_for_review": false
-  }
+    "flagged_for_review": false,
+    "fails": 2
+  },
+  "average_goals": 0
 }
